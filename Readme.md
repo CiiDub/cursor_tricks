@@ -131,7 +131,7 @@ So my mental model is:
 _* Its odd to me that this doesn’t auto indent_
 - _Command Option Return_ to encapsulate the curser or new line.
 
-I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think a head just to use a fancy insert with a bunch of placeholders. This works really well with me in the flow of things.
+I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
 
 ### Menu Scripts
 
