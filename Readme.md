@@ -65,7 +65,8 @@ This script could be a BBEdit clipping. But making it a script seems appropriate
 - __Clever  Indent__, looks at the text on the current line, then changes and indents the next line according to what it sees.
 
 
-The default behavior is to make a new line and indent it. 
+The default behavior is to make a new line and indent it.   
+This should works great for languages and markup with significant indentation like Python and Haml.
 
 ```
 Text|
@@ -88,6 +89,14 @@ If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket charact
 <div>|</div>
 ```
 
+If you use a tag but you don’t have the document type set to a markup language , it will start the closing tag for you but you will have to finish the name.
+
+```
+<div>|
+
+<div></|
+```
+
 If the curser is wrapped in bracket characters it will make two new lines and indent the first one.   
 
 ```Javascript
@@ -96,6 +105,16 @@ function () {|}
 function () {
     |
 }
+```
+
+It works the same for tags.
+
+```
+<div>|</div>
+
+<div>
+	|
+</div>
 ```
 
 If it detects a Ruby key word or control statement it will make two new lines indenting the first one and adding the _end_ statement.  
@@ -128,7 +147,7 @@ So my mental model is:
 
 - _Return_ for a new line at the curser.
 - _Command Return_ for a new line ignoring the curser possition.  
-_* Its odd to me that this doesn’t auto indent_
+_*I added auto indenting to this command. See below_
 - _Command Option Return_ to encapsulate the curser or new line.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
@@ -151,7 +170,13 @@ What I recently discovered was that every BBEdit project also get a Scratchpad a
 
 If you wish to access the app level documents while leaving a project in front, then hold _Option_ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
 
+- __Lines•New Line After Paragraph__, captures the leading white space from the current line, then applies it to the new line. 
+
+I found that I pretty much always want auto indenting. This command can save you a little “arrowing” around but it’s pointless if you have to tab over to your current indention. 
+
+When it adds the white space to the line it is selected by default. I then set the insertion point to the popper location after the indention. You can see a flash of the selection. I hope to find a way to get rid of that.
+
+
 ## Planned Maybe Additions
-- Might add auto-indenting to New Line After Paragraph with menu script
 - Maybe a smart copy line down script with some fancy list stuff.
 - Probably should add some AppleScript affordances  to Clever Curser script.
