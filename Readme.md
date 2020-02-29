@@ -1,8 +1,8 @@
-# Curser Tricks
+# Cursor Tricks
 
 _*Warning: This readme is ...🤔  self-indulgent._
 
-Curser Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found.  Most of these scripts, clippings and such are grounded or anchored to a native BBEdit command.  Often I’m just trying to lean into a muscle memory.
+Cursor Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found.  Most of these scripts, clippings and such are grounded or anchored to a native BBEdit command.  Often I’m just trying to lean into a muscle memory.
 
  “If I can move a line down, it would be nice if I could copy a line down in a similar way.” 
 
@@ -24,9 +24,9 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 ### Rake commands
 
-- __rake install__, installs this project as a Curser Tricks.bbpackage into BBedits Packages folder. It runs backup, and compile as prerequisites before installing the package.
+- __rake install__, installs this project as a Cursor Tricks.bbpackage into BBedits Packages folder. It runs backup, and compile as prerequisites before installing the package.
 - __rake compile__, compiles all applescripts except the menu scripts.
-- __rake backup__,   backs up the installed (and presumably working) copy of this package as Curser Tricks.backup.
+- __rake backup__,   backs up the installed (and presumably working) copy of this package as Cursor Tricks.backup.
 - __rake lines:compile__, compiles all applescripts in the Lines directory.
 - __rake white\_space:compile__, compiles all applescripts in White Space.
 - __rake resources:compile__, compiles all applescripts in resources.
@@ -41,7 +41,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 These a two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__.  The two native commands have the default keyboard shortcuts of _Ctrl_  ⇣ &  _Ctrl_ ⇡. So I use and recommend the shortcuts  _Ctrl Option_ ⇣ &  _Ctrl Option_ ⇡ respectively.
 
-- __Smart Home Move__, moves the curser to start of the line not including prepended white space.
+- __Smart Home Move__, moves the cursor to start of the line not including prepended white space.
 - __Smart Home Select__, selects to the start of the line not including prepended white space.
 
 These two are meant to replace  the default behavior of _Ctrl ⇠_ and _Ctrl Shift ⇠_ . 
@@ -51,9 +51,9 @@ They are pulled directly from this blog post. It’s well written and worth a re
 They don’t work in search fields, which is a bummer. The price you pay for being to cool for the defaults.
 
 ### White Space: 
-_\* The curser will be represented with a_ |
+_\* The cursor will be represented with a_ |
 
-- __Wrap with Spaces__, wraps the curser or selection in spaces.
+- __Wrap with Spaces__, wraps the cursor or selection in spaces.
 
 ```
 It makes this, {|}  
@@ -75,7 +75,7 @@ Text
     |
 ``` 
 
-If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the leading side of the curser it will close it wrapping the curser.  
+If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the leading side of the cursor it will close it wrapping the cursor.  
 
 ```
 {|  
@@ -97,7 +97,7 @@ If you use a tag but you don’t have the document type set to a markup language
 <div></|
 ```
 
-If the curser is wrapped in bracket characters it will make two new lines and indent the first one.   
+If the cursor is wrapped in bracket characters it will make two new lines and indent the first one.   
 
 ```Javascript
 function () {|} 
@@ -133,7 +133,7 @@ Currently the script will close a tag in these doc types : HTML, XML, Ruby in HT
 
 The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.angelwatt.com/words/2011/04/11/bbedit-smart-newline-open-line/). I was actually shopping for something ruby specific but ran across this. I was impressed by how flexible it was.  _Smart New Line_ does more than my script, such as incrementing numbered list. It’s pretty cool and you should check it out, but it doesn’t quite fit for me.
 
-I use auto-pairing for bracket characters. I wanted my script to know when the curser was wrapped. 
+I use auto-pairing for bracket characters. I wanted my script to know when the cursor was wrapped. 
 
 Also I wanted it to fit with BBedits __New Line After Paragraph__. It uses the key-command _command return_ and will make a new line without disturbing the current line / paragraph. Kind of jumping you down there.
 
@@ -145,10 +145,10 @@ I also made  __Clever Indent__ respect expanded tabs with a separate terse scrip
 
 So my mental model is:
 
-- _Return_ for a new line at the curser.
-- _Command Return_ for a new line ignoring the curser possition.  
+- _Return_ for a new line at the cursor.
+- _Command Return_ for a new line ignoring the cursor possition.  
 _*I added auto indenting to this command. See below_
-- _Command Option Return_ to encapsulate the curser or new line.
+- _Command Option Return_ to encapsulate the cursor or new line.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
 
@@ -179,4 +179,4 @@ When it adds the white space to the line it is selected by default. I then set t
 
 ## Planned Maybe Additions
 - Maybe a smart copy line down script with some fancy list stuff.
-- Probably should add some AppleScript affordances  to Clever Curser script.
+- Probably should add some AppleScript affordances  to Clever Cursor script.

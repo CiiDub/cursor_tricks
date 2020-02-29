@@ -1,6 +1,6 @@
 require 'fileutils'
 
-@package_name = 'Curser Tricks'
+@package_name = 'Cursor Tricks'
 @bbpackages_path = "#{Dir.home}/Library/Application Support/BBEdit/Packages/"
 @bbfolders_path = "#{Dir.home}/Library/Application Support/BBEdit"
 @osa_source = FileList['Uncompiled Applescript/**/*.applescript']
