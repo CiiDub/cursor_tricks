@@ -174,8 +174,6 @@ If you wish to access the app level documents while leaving a project in front, 
 
 I found that I pretty much always want auto indenting. This command can save you a little “arrowing” around but it’s pointless if you have to tab over to your current indention. 
 
-When it adds the white space to the line it is selected by default. I then set the insertion point to the popper location after the indention. You can see a flash of the selection. I hope to find a way to get rid of that.
-
 
 ## Planned Maybe Additions
 - Maybe a smart copy line down script with some fancy list stuff.
