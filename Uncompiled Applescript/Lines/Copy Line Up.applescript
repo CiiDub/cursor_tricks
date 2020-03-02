@@ -18,8 +18,7 @@ tell application "BBEdit"
 		end if
 		
 		if (ASCII character 10) ≠ testChar then
-			set line_end to "
-"
+			set line_end to linefeed
 		end if
 		
 		select insertion point before line (start_line)
