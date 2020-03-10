@@ -48,7 +48,8 @@ These two are meant to replace  the default behavior of _Ctrl ⇠_ and _Ctrl Shi
 They are pulled directly from this blog post. It’s well written and worth a read. 
 [Extending BBEdit with AppleScript](https://jonbeebe.net/2017/07/extending-bbedit-with-applescript/)
 
-They don’t work in search fields, which is a bummer. The price you pay for being to cool for the defaults.
+I made a small change to make them work in search fields. Kind of a hack and will probably bring up a security dialog.
+It tell System Events to keystroke _⌘ + ↑_. Which takes you to the beginning of a document. In a search field that is a pretty good fallback.
 
 ### White Space: 
 _\* The cursor will be represented with a_ |

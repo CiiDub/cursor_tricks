@@ -7,6 +7,11 @@
 *)
 
 tell application "BBEdit" to tell front window
+	-- Accommodation for search windows
+	if name = "Find" or name = "Pattern Playground" or name = "Multi-File Search" then
+		tell application "System Events" to key code 126 using command down
+		return
+	end if
 	-- Grab line number and offset of text cursor
 	tell the selection to set {_n, _selectionstart} to {startLine, characterOffset}
 	-- Grab offset of line in the document and the contents of the line
