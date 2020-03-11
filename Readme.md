@@ -39,12 +39,12 @@ Any of these scripts can be copied and installed outside of the package of cours
 - __Copy Line Down__, takes the selected lines duplicates them as new lines. The new lines, below the originals, will be selected. Sort of moving down the document.
 - __Copy Line Up__, duplicates the selected lines but leaves the selection put.
 
-These a two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__.  The two native commands have the default keyboard shortcuts of _Ctrl_  ⇣ &  _Ctrl_ ⇡. So I use and recommend the shortcuts  _Ctrl Option_ ⇣ &  _Ctrl Option_ ⇡ respectively.
+These a two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__.  The two native commands have the default keyboard shortcuts of _⌃ ⇣_ &  _⌃ ⇡_. So I use and recommend the shortcuts  _⌃ ⌥ ⇣_ &  _⌃ ⌥ ⇡_ respectively.
 
 - __Smart Home Move__, moves the cursor to start of the line not including prepended white space.
 - __Smart Home Select__, selects to the start of the line not including prepended white space.
 
-These two are meant to replace  the default behavior of _Ctrl ⇠_ and _Ctrl Shift ⇠_ . 
+These two are meant to replace  the default behavior of _⌃ ⇠_ and _⌃ Shift ⇠_ . 
 They are pulled directly from this blog post. It’s well written and worth a read. 
 [Extending BBEdit with AppleScript](https://jonbeebe.net/2017/07/extending-bbedit-with-applescript/)
 
@@ -138,7 +138,7 @@ I use auto-pairing for bracket characters. I wanted my script to know when the c
 
 Also I wanted it to fit with BBedits __New Line After Paragraph__. It uses the key-command _command return_ and will make a new line without disturbing the current line / paragraph. Kind of jumping you down there.
 
-I set __Clever Indent__ to _command option return_.  It’s function is to encapsulate. So “__{}__” from a Javascript function, ” __do end__” from a Ruby block, or  a new line with and indent with Python or Haml.  It might make sense for it to indent and name a new section of an outline but not to increment a flat list.
+I set __Clever Indent__ to _command ⌥ return_.  It’s function is to encapsulate. So “__{}__” from a Javascript function, ” __do end__” from a Ruby block, or  a new line with and indent with Python or Haml.  It might make sense for it to indent and name a new section of an outline but not to increment a flat list.
 
 The script doesn’t just insert text but inserts a BBedit clipping. It’s useful because I can take advantage of clippings features. Such as the #INDENT# placeholder, so I don’t have to be concerned with capturing the current lines leading whitespace.
 
@@ -147,9 +147,8 @@ I also made  __Clever Indent__ respect expanded tabs with a separate terse scrip
 So my mental model is:
 
 - _Return_ for a new line at the cursor.
-- _Command Return_ for a new line ignoring the cursor possition.  
-_*I added auto indenting to this command. See below_
-- _Command Option Return_ to encapsulate the cursor or new line.
+- _⌘ Return_ for a new line ignoring the cursor possition. _*I added auto indenting to this command. See below_
+- _⌘ ⌥ Return_ to encapsulate the cursor or new line.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
 
@@ -159,17 +158,17 @@ I like this a lot. I find I’m simplifying my Clippings and using less of them.
 
 This is my favorite, because it uses my three favorite features in BBEdit.
 
-_Menu Scripts_ let you prepend a script to a native menu command and optionally continue with command. As well as append a script so it runs after the command.  Just a great idea.
+_Menu Scripts_ let you prepend a script to a native menu command and ⌥ally continue with command. As well as append a script so it runs after the command.  Just a great idea.
 
 _Scratchpad_ is a persistent document in BBedit.  The name really kind of says it. It doesn’t sound like much but in practise it’s great.
 
 _Unix Worksheets_ are documents that will execute shell commands when you _Control Return_ a line. It’s the command line meets a text document. You can make and save as many as you like but BBedit also has a persistent one available through the _Window_ menu just like Scratchpad.
 
-I have these two persistent documents assigned to _Command 1_ and _Command 2_ respectively.
+I have these two persistent documents assigned to _⌘ 1_ and _⌘ 2_ respectively.
 
-What I recently discovered was that every BBEdit project also get a Scratchpad and a persistent Unix Worksheet. With this script the project versions are just as easy to activate. _Command 1_ and _Command 2_ in my case, when a project is the frontmost window.
+What I recently discovered was that every BBEdit project also get a Scratchpad and a persistent Unix Worksheet. With this script the project versions are just as easy to activate. _⌘ 1_ and _⌘ 2_ in my case, when a project is the frontmost window.
 
-If you wish to access the app level documents while leaving a project in front, then hold _Option_ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
+If you wish to access the app level documents while leaving a project in front, then hold _⌥_ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
 
 - __Lines•New Line After Paragraph__, captures the leading white space from the current line, then applies it to the new line. 
 
