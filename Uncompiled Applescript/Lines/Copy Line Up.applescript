@@ -17,7 +17,7 @@ tell application "BBEdit"
 			make new line at line 1
 		end if
 		
-		if (ASCII character 10) ≠ testChar then
+		if (linefeed ≠ testChar) and (start_line - end_line ≠ 0) then
 			set line_end to linefeed
 		end if
 		

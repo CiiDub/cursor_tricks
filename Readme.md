@@ -84,7 +84,7 @@ If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket charact
 {|}
 ```
 
-```
+```HTML
 <div>|
 
 <div>|</div>
@@ -92,7 +92,7 @@ If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket charact
 
 If you use a tag but you don’t have the document type set to a markup language , it will start the closing tag for you but you will have to finish the name.
 
-```
+```HTML
 <div>|
 
 <div></|
@@ -110,7 +110,7 @@ function () {
 
 It works the same for tags.
 
-```
+```HTML
 <div>|</div>
 
 <div>
