@@ -12,7 +12,7 @@ tell application "BBEdit"
 			set testChar to ""
 		end try
 		
-		if (ASCII character 10) ≠ testChar then
+		if (linefeed ≠ testChar) then
 			make new line at line end_line
 		end if
 		
