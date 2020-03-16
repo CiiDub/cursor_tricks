@@ -19,9 +19,6 @@ tell application "BBEdit"
 		
 		if (line_count = 1) then
 			make new line at line 1
-		end if
-		
-		if line_count = 1 then
 			set line_end to ""
 		end if
 		
