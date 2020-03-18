@@ -8,7 +8,7 @@ Cursor Tricks is a BBEdit package that massages the app to work better with my h
 
  “If this key-command does this work in this context it should do that in another.“
 
-This is the kind of work I want this package to do. Little friction reducers that don’t take you out of what your doing, and are harmonious with the BBedit defaults.
+This is the kind of work I want this package to do. Little friction reducers that don’t don’t fight with the BBedit default commands and settings.
 
 It’s my throw rug for my text editor. I think it really brings the room together. 
 
@@ -24,7 +24,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 ### Rake commands
 
-- __rake install__, installs this project as a Cursor Tricks.bbpackage into BBedits Packages folder. It runs backup, and compile as prerequisites before installing the package.
+- __rake install__, installs this project as a Cursor Tricks.bbpackage into BBedits Packages folder. It runs backup, and compiles as prerequisites before installing the package.
 - __rake compile__, compiles all applescripts except the menu scripts.
 - __rake backup__, backs up the installed (and presumably working) copy of this package as Cursor Tricks.backup.
 - __rake lines:compile__, compiles all applescripts in the Lines directory.
@@ -37,7 +37,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 ### Lines:
 
-- __Copy Line Down__, takes the selected lines duplicates them as new lines. The new lines, below the originals, will be selected. Sort of moving down the document.
+- __Copy Line Down__, takes the selected lines duplicates them. The new lines, below the originals, will be selected. Sort of moving down the document.
 - __Copy Line Up__, duplicates the selected lines but leaves the selection put.
 
 These a two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
@@ -49,8 +49,7 @@ These two are meant to replace  the default behavior of __⌃ ←__ and __⌃ �
 They are pulled directly from this blog post. It’s well written and worth a read. 
 [Extending BBEdit with AppleScript](https://jonbeebe.net/2017/07/extending-bbedit-with-applescript/)
 
-I made a small change to make them work in search fields. Kind of a hack and will bring up a security dialog.
-It tell System Events to keystroke _⌘ ↑_. Which takes you to the beginning of a document. In a search field that is a pretty good fallback.
+I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke _⌘ ↑_. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
 
 ### White Space: 
 _\* The cursor will be represented with a_ |
@@ -77,7 +76,7 @@ Text
     |
 ``` 
 
-If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the leading side of the cursor it will close it wrapping the cursor. 
+If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the left side of the cursor it will close it wrapping the cursor. 
 
 ```
 {|  
@@ -159,11 +158,11 @@ I like this a lot. I find I’m simplifying my Clippings and using less of them.
 
 This is my favorite, because it uses my three favorite features in BBEdit.
 
-_Menu Scripts_ let you prepend a script to a native menu command and optionally continue with command. As well as append a script so it runs after the command. Just a great idea.
+_Menu Scripts_ let you prepend a script to a native menu command and optionally continues with command. As well as append a script so it runs after the command. Just a great idea.
 
 _Scratchpad_ is a persistent document in BBedit. The name really kind of says it. It doesn’t sound like much but in practice it’s great.
 
-_Unix Worksheets_ are documents that will execute shell commands when you __⌃ ↵__ a line. It’s the command line meets a text document. You can make and save as many as you like but BBedit also has a persistent one available through the _Window_ menu just like Scratchpad.
+_Unix Worksheets_ are documents that will execute shell commands when you __⌃ ↵__ at the end of a line. It’s the command line meets a text document. You can make and save as many as you like but BBedit also has a persistent one available through the _Window_ menu just like Scratchpad.
 
 I have these two persistent documents assigned to __⌘ 1__ and __⌘ 2__ respectively.
 
@@ -183,10 +182,10 @@ Both these scripts exist for the same reason. I feel if a command makes a select
 
 The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- __⌘ ⌥ ⌃ H__. It is so much like _Search•Find & Select All_ with __⌘ ⌥ ⌃ G__. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
-I also think __⌘ ⌥ ⌃ G__ should do double duty and run _Select > Live Search Results_ if live search is open. I haven’t figured out a way to make that happen. Well, I have an idea but it would litter up the script menu and I don’t use live search that much anyway.
+I also think __⌘ ⌥ ⌃ G__ should do double duty and run _Select > Live Search Results_ if live search is open. I haven’t figured out a way to make that happen. Well, I have an idea but it would litter up the script menu and I don’t use live search that much anyway. Also, it might not work.
 
 ## Planned Maybe Additions
 
-- Maybe add some fancy list stuff Copy Line Down script with.
+- Maybe add some fancy list stuff to the Copy Line Down script.
 - Probably should add some AppleScript affordances  to Clever Indent script.
 - Add some outlining features to Clever Indent
