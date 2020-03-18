@@ -5,7 +5,7 @@ require 'fileutils'
 @bbfolders_path = "#{Dir.home}/Library/Application Support/BBEdit"
 @osa_source = FileList['Uncompiled Applescript/**/*.applescript']
 
-# Methods
+#Note: Methods
 # Checks files from source folder against target folder and copies them if out of date.
 # Returns True if any copies were made, False otherwise.
 def check_and_copy( src_dir, trg_dir, src_list, work_msg  )
@@ -36,6 +36,7 @@ def collect_osa_from_dir ( dir )
 	return osa_tasks
 end
 
+#Note: AppleScript rule.
 # Takes *.scpt as file-command and looks for a dependency (*.applescript) in the Uncompiled Applescript folder.
 rule '.scpt' => [ proc { | task_name | t = task_name
 	.gsub( %r'[/ \S/]*[ \S]+/', '' )
