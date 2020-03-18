@@ -87,7 +87,7 @@ desc "Backs up the installed (and presumably working) copy of this package as #{
 task :backup do
 	did_back_up = false
 	cd @bbpackages_path, :verbose => false do
-		target = "#{@package_name}.backup"
+		target = "#{Dir.home}/Documents/BBEdit Backups/#{@package_name}.bbpackage.backup"
 		src = ["#{@package_name}.bbpackage"]
 		unless uptodate?( target, src )
 			backed_up = false
