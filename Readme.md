@@ -133,9 +133,9 @@ end
 Special case for ruby block parameter delimiters.  
 
 ```Ruby
-	Array.each do |∫
+Array.each do |∫
 	
-	Array.each do | ∫ |
+Array.each do | ∫ |
 ```
 
 Then this still works of course.
