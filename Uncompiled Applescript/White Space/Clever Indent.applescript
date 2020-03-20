@@ -28,7 +28,7 @@ on match_bracket(l_brac)
 	end if
 end match_bracket
 
-set markup_docs to {"HTML", "XML", "Ruby in HTML","PHP in HTML"}
+set markup_docs to {"HTML", "XML", "Ruby in HTML", "PHP in HTML"}
 
 # Clippings
 # This is the equivalent to ../../../ POSIX path. Thank you Dr. Drang
@@ -37,6 +37,7 @@ set home to POSIX path of c_path & "Resources/"
 set one_over to POSIX file (home & "one_over")
 set wrapped to POSIX file (home & "wrapped")
 set ended to POSIX file (home & "ended")
+set block_param to POSIX file (home & "block_param")
 
 set open_bracket to "[{[('\"\\`] ?$|(<[a-z]*) ?[0-9a-z\"= ]*>$"
 set close_bracket to "^ ?[]})'\"\\`]|^ ?</[a-z]+ ?>"
@@ -93,35 +94,43 @@ tell window 1 of application "BBEdit"
 				set tag_name to name of tag of _tag
 				select insertion point before character cursor
 				set close_tag to "</" & tag_name & ">"
-				if (line_offset + line_length) = cursor then set close_tag to close_tag & "\n"
+				if (line_offset + line_length) = cursor then set close_tag to close_tag & "
+"
 				set contents of character cursor to close_tag
 				select insertion point before character cursor
 				return
-			end
+			end if
 			# White space clean up.
 			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 			set match_char to my match_bracket(character -1 of (captured of start_results))
 			# If the cursor is at the end of a line it will write over the line endings.
 			# This pertects against that.
-			if (line_offset + line_length) = cursor then set match_char to match_char & "\n"
+			if (line_offset + line_length) = cursor then set match_char to match_char & "
+"
 			set contents of character cursor to match_char
 			# Fallback if markup doc not selected or isn't supported.
 			# Starts a tag and sets the cursor in position to type tag name. 
-			if match_char = "</" or match_char = "</\n" then 
-				select insertion point before character (cursor+2)
+			if match_char = "</" or match_char = "</
+" then
+				select insertion point before character (cursor + 2)
 				return
 			else
 				select insertion point before character cursor
 				return
-			end
+			end if
 		end if
 		
 		# Ruby language end statements.
 		if doc_lang = "Ruby" then
+			set param_regex to "do \\|$|{ ?\\|$"
 			set ruby_regex to "^[	| ]*class [A-Z][a-z]+ ?|def [a-z]+ ?.* ?|if .+ ?|unless .+ ?|case .+ ?|while .+ ?|until .+ ?|begin ?|rescue ?"
 			set do_regex to "do ?(\\|.*\\|)? ?"
+			set param_results to my testString(start_text, param_regex)
 			set ruby_results to my testString(start_text, ruby_regex)
 			set do_results to my testString(start_text, do_regex)
+			if success of param_results then
+				return insert clipping block_param
+			end if
 			if success of ruby_results then
 				# White space clean up.
 				if character -1 of (captured of ruby_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
@@ -132,7 +141,7 @@ tell window 1 of application "BBEdit"
 				if character -1 of (captured of do_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 				return insert clipping ended
 			end if
-		end if		
+		end if
 		return insert clipping one_over
 	end tell
 end tell
