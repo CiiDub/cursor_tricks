@@ -26,7 +26,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 - __rake install__, installs this project as a Cursor Tricks.bbpackage into BBedits Packages folder. It runs backup, and compiles as prerequisites before installing the package.
 - __rake compile__, compiles all applescripts except the menu scripts.
-- __rake backup__, backs up the installed (and presumably working) copy of this package as Cursor Tricks.backup.
+- __rake backup__, backs up the installed (and presumably working) copy of this package as Cursor Tricks.bbpackage.backup in ~/Documents/BBEdit Backups/
 - __rake lines:compile__, compiles all applescripts in the Lines directory.
 - __rake white\_space:compile__, compiles all applescripts in White Space.
 - __rake resources:compile__, compiles all applescripts in resources.
@@ -40,7 +40,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 - __Copy Line Down__, takes the selected lines duplicates them. The new lines, below the originals, will be selected. Sort of moving down the document.
 - __Copy Line Up__, duplicates the selected lines but leaves the selection put.
 
-These a two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
+These two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
 
 - __Smart Home Move__, moves the cursor to start of the line not including prepended white space.
 - __Smart Home Select__, selects to the start of the line not including prepended white space.
