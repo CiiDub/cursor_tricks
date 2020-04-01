@@ -75,7 +75,7 @@ tell window 1 of application "BBEdit"
 		set end_results to my testString(end_text, close_bracket)
 		 
 
-		# INDENTION LOGIC
+		### INDENTION LOGIC 
 
 		
 		# Note: Indent wrapped cursor
@@ -95,7 +95,7 @@ tell window 1 of application "BBEdit"
 		# Note: Ruby
 		if doc_lang = "Ruby" then
 			set param_regex to "do \\|$|{ ?\\|$"
-			set ruby_regex to "^[	| ]*class [A-Z][a-z]+ ?|def [a-z]+ ?.* ?|if .+ ?|unless .+ ?|case .+ ?|while .+ ?|until .+ ?|begin ?|rescue ?"
+			set ruby_regex to "^[	 ]*class [A-Z][a-z]+ ?|def [a-z]+ ?.* ?|if .+ ?|unless .+ ?|case .+ ?|while .+ ?|until .+ ?|begin ?|rescue ?"
 			set do_regex to "do ?(\\|.*\\|)? ?"
 			set param_results to my testString(start_text, param_regex)
 			set ruby_results to my testString(start_text, ruby_regex)
@@ -117,7 +117,15 @@ tell window 1 of application "BBEdit"
 		
 		# Note: AppleScript
 		if doc_lang = "AppleScript" then
-			
+			set osa_regex to "^[	 ]*if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?"
+			set keyword_regex to "if|tell|try|considering|ignoring|repeat|timeout|transaction|using terms from"
+			set osa_results to my testString(start_text, osa_regex)
+			if success of osa_results then 				
+				set keyword_results to my testString((captured of osa_results), keyword_regex)
+				set contents of character cursor to " " & (captured of keyword_results) & linefeed
+				select insertion point before character cursor
+				return insert clipping ended
+			end if
 		end if
 		# Note: Fish
 		# As far as I can tell there is no fish language module.
@@ -157,7 +165,8 @@ tell window 1 of application "BBEdit"
 				return
 			end if
 		end if
-		 
+		
+		# Note: The fallback 
 		return insert clipping one_over
 	end tell
 end tell
