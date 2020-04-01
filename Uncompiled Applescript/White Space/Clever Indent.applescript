@@ -90,7 +90,7 @@ tell window 1 of application "BBEdit"
 			return insert clipping wrapped
 		end if
 		
-		# LANGUAGE SPECIFIC BEGINS
+		# LANGUAGE SPECIFIC/SPECIAL CASES BEGINS
 		
 		# Note: Ruby
 		if doc_lang = "Ruby" then
@@ -119,18 +119,26 @@ tell window 1 of application "BBEdit"
 		if doc_lang = "AppleScript" then
 			set osa_regex to "^[	 ]*if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?"
 			set keyword_regex to "if|tell|try|considering|ignoring|repeat|timeout|transaction|using terms from"
+			set handler_regex to "^[ 	]?on [a-zA-Z_-]+[(]?.*[)]? ?"
 			set osa_results to my testString(start_text, osa_regex)
+			set handler_results to my testString(start_text, handler_regex)
 			if success of osa_results then 				
 				set keyword_results to my testString((captured of osa_results), keyword_regex)
 				set contents of character cursor to " " & (captured of keyword_results) & linefeed
 				select insertion point before character cursor
 				return insert clipping ended
 			end if
+			if success of handler_results then
+				set er_test to my testString((captured of handler_results), "on error")
+				if ((success of er_test) = false) then
+					return insert clipping ended
+				end if
+			end if
 		end if
 		# Note: Fish
 		# As far as I can tell there is no fish language module.
 		
-		# LANGUAGE SPECIFIC ENDS
+		# LANGUAGE SPECIFIC/SPECIAL CASES ENDS
 		
 		# Note: Character Pairing
 		# If there is only a bracketing character on the leading side of the cursor, pairs the character.
