@@ -5,7 +5,7 @@ require 'fileutils'
 @bbfolders_path = "#{Dir.home}/Library/Application Support/BBEdit"
 @osa_source = FileList['Uncompiled Applescript/**/*.applescript']
 
-#Note: Methods
+# Note: Methods
 # Checks files from source folder against target folder and copies them if out of date.
 # Returns True if any copies were made, False otherwise.
 def check_and_copy( src_dir, trg_dir, src_list, work_msg  )
@@ -15,14 +15,14 @@ def check_and_copy( src_dir, trg_dir, src_list, work_msg  )
 		unless uptodate?( t_file, [s_file] )
 			needed_work = true
 			puts work_msg
-			cp s_file, t_file
+			cp( s_file, t_file, :verbose => false )
 		end
 	end
 	return needed_work
 end
 
 # Takes a folder name from Uncompiled Applescript and makes a list of file tasks.
-def collect_osa_from_dir ( dir )
+def collect_osa_from_dir( dir )
 	osa_tasks = []
 	@osa_source.each do | s |
 		trg_dir = "Contents" if [ 'Resources' ].include?( dir )
@@ -36,7 +36,7 @@ def collect_osa_from_dir ( dir )
 	return osa_tasks
 end
 
-#Note: AppleScript rule.
+# Note: AppleScript rule.
 # Takes *.scpt as file-command and looks for a dependency (*.applescript) in the Uncompiled Applescript folder.
 rule '.scpt' => [ proc { | task_name | t = task_name
 	.gsub( %r'[/ \S/]*[ \S]+/', '' )
@@ -92,8 +92,8 @@ task :backup do
 		unless uptodate?( target, src )
 			backed_up = false
 			puts 'Backing up package.'
-			rm_r target if Dir.exists?( target )
-			cp_r src[0], target
+			rm_r( target, :verbose => false ) if Dir.exists?( target )
+			cp_r( src[0], target, :verbose => false )
 		end
 		did_back_up = check_and_copy( src[0], target, FileList["#{src[0]}/**/*"], "Updating back-up."  )
 	end
@@ -115,8 +115,8 @@ task :install => [ :compile, :backup ] do
 
 	if did_install
 		puts "Installing #{@package_name} for use by BBedit."
- 		rm_r "#{@bbpackages_path}#{@package_name}.bbpackage/"
- 		cp_r pwd, "#{@bbpackages_path}#{@package_name}.bbpackage"
+ 		rm_r( "#{@bbpackages_path}#{@package_name}.bbpackage/", :verbose => false )
+ 		cp_r( pwd, "#{@bbpackages_path}#{@package_name}.bbpackage", :verbose => false )
  	else
 		did_install = check_and_copy( pwd, "#{@bbpackages_path}#{@package_name}.bbpackage", src, "Updating #{@package_name}." )
 	end
