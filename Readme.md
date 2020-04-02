@@ -52,13 +52,13 @@ They are pulled directly from this blog post. It’s well written and worth a re
 I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke _⌘ ↑_. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
 
 ### White Space: 
-_\* The cursor will be represented with a_ ∫
+_\* The cursor will be represented with a_ ⎮
 
 - __Wrap with Spaces__, wraps the cursor or selection in spaces.
 
 ```
-It makes this, {∫}  
-Into this, { ∫ }
+It makes this, {⎮}  
+Into this, { ⎮ }
 ```
 
 This script could be a BBEdit clipping. But making it a script seems appropriate, and keeps it from popping up in code suggestions. 
@@ -70,51 +70,51 @@ The default behavior is to make a new line and indent it.
 This should works great for languages and markup with significant indentation like Python and Haml.
 
 ```
-Text∫
+Text⎮
 
 Text
-    ∫
+    ⎮
 ``` 
 
 If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the left side of the cursor it will close it wrapping the cursor. 
 
 ```
-{∫  
+{⎮  
 
-{∫}
+{⎮}
 ```
 
 ```HTML
-<div>∫
+<div>⎮
 
-<div>∫</div>
+<div>⎮</div>
 ```
 
 If you use a tag but you don’t have the document type set to a markup language , it will start the closing tag for you but you will have to finish the name.
 
 ```HTML
-<div>∫
+<div>⎮
 
-<div></∫
+<div></⎮
 ```
 
 If the cursor is wrapped in bracket characters it will make two new lines and indent the first one.  
 
 ```Javascript
-function () {∫} 
+function () {⎮} 
 
 function () {
-    ∫
+    ⎮
 }
 ```
 
 It works the same for tags.
 
 ```HTML
-<div>∫</div>
+<div>⎮</div>
 
 <div>
-	∫
+	⎮
 </div>
 ```
 
@@ -122,10 +122,10 @@ Ruby: Blocks, Control Statements, and Methods
 
 ```Ruby
 
-Array.each do ∫
+Array.each do ⎮
 
 Array.each do
-    ∫
+    ⎮
 end
 
 ```
@@ -133,34 +133,34 @@ end
 Special case for ruby block parameter delimiters.  
 
 ```Ruby
-Array.each do |∫
+Array.each do |⎮
 	
-Array.each do | ∫ |
+Array.each do | ⎮ |
 ```
 
 AppleScript: Control Statements and Handlers (both __on__ and __to__ varieties)
 
-``` 
-tell app "Finder" ∫
+```AppleScript
+tell app "Finder" ⎮
 
 tell app "Finder"
-	∫
+	⎮
 end tell
 ```
 
 ```AppleScript
-if condition then ∫
+if condition then ⎮
 
 if condition then
-	∫
+	⎮
 end if
 ```
 
 ```AppleScript
-on coolHandler(arg) ∫
+on coolHandler(arg) ⎮
 
 on coolHandler(arg)
-	∫
+	⎮
 end coolHandler
 ```
 
