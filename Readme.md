@@ -148,7 +148,7 @@ tell app "Finder"
 end tell
 ```
 
-```
+```AppleScript
 if condition then ∫
 
 if condition then
@@ -156,7 +156,7 @@ if condition then
 end if
 ```
 
-``` 
+```AppleScript
 on coolHandler(arg) ∫
 
 on coolHandler(arg)
