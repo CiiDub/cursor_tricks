@@ -164,7 +164,52 @@ on coolHandler(arg)
 end coolHandler
 ```
 
-Bash: Planned
+Bash: Control Statements & Loops.
+
+```Bash
+if [condition] ⎮
+	
+if [condition]
+then
+	⎮
+fi
+```
+
+```Bash
+if [condition]
+then
+	echo "sos" | rev
+elif [condition] ⎮
+fi
+
+if [condition]
+then
+	echo "sos" | rev
+elif [condition]
+then
+	⎮
+else
+	
+fi
+```
+
+```Bash
+case $var in ⎮
+
+case $var in
+	⎮)
+	*)
+esac
+```
+
+```Bash
+while [condition] ⎮
+
+while [condition]
+do
+	⎮
+done
+```
 
 
 Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script (line 31).
@@ -222,8 +267,6 @@ The command _Select > Live Search Results_ has a sister command called _Select >
 I also think __⌘ ⌥ ⌃ G__ should do double duty and run _Select > Live Search Results_ if live search is open. I haven’t figured out a way to make that happen. Well, I have an idea but it would litter up the script menu and I don’t use live search that much anyway. Also, it might not work.
 
 ## Planned Maybe Additions
-
-- Add Bash language support to Clever Indent
 
 - Maybe add some fancy list stuff to the Copy Line Down script.
 

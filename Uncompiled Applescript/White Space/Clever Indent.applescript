@@ -54,6 +54,10 @@ set one_over to POSIX file (home & "one_over")
 set wrapped to POSIX file (home & "wrapped")
 set ended to POSIX file (home & "ended")
 set block_param to POSIX file (home & "block_param")
+set bash_loop to POSIX file (home & "bash_loop")
+set bash_if to POSIX file (home & "bash_if")
+set bash_case to POSIX file (home & "bash_case")
+set bash_elif to POSIX file (home & "bash_elif")
 
 set open_bracket to "[{\\[('\"\\`] ?$|(<[a-z]*) ?[0-9a-z\"= ]*>$"
 set close_bracket to "^ ?[\\]})'\"\\`]|^ ?</[a-z]+ ?>"
@@ -133,9 +137,9 @@ tell window 1 of application "BBEdit"
 		
 		# Note: AppleScript
 		if doc_lang = "AppleScript" then
-			set osa_regex to "^[	 ]*if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?"
+			set osa_regex to "^[	 ]*(?:if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?)"
 			set keyword_regex to "if|tell|try|considering|ignoring|repeat|timeout|transaction|using terms from"
-			set handler_regex to "^[ 	]?(on|to) (?!error)([a-zA-Z_-]+)[(]?.*[)]? ?"
+			set handler_regex to "^[ 	]?(?:(on|to) (?!error)([a-zA-Z_-]+)[(]?.*[)]? ?)"
 			set osa_results to my testString(start_text, osa_regex, "")
 			set handler_results to my testString(start_text, handler_regex, "2")
 			if success of osa_results then 				
@@ -152,6 +156,31 @@ tell window 1 of application "BBEdit"
 		end if
 		
 		#Note: Bash
+		if doc_lang = "Unix Shell Script" then
+			set bash_regex to "^[ 	]*(if|elif|case) ?(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in)"
+			set bash_loops_regex to "^[ 	]*(while ?|until ?|select ?|for ?)(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in [a-zA-Z@$#_\\(\\)]+) ?"
+			
+			set bash_loops_results to my testString(start_text, bash_loops_regex, "")
+			if success of bash_loops_results then
+				if character -1 of (captured of bash_loops_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+				return insert clipping bash_loop
+			end if
+			set bash_results to my testString(start_text, bash_regex, "1")
+			if success of bash_results then
+				if (sub_cap of bash_results = "if") then
+					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					return insert clipping bash_if
+				end if
+				if sub_cap of bash_results = "case" then
+					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					return insert clipping bash_case
+				end if
+				if sub_cap of bash_results = "elif" then
+					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					return insert clipping bash_elif
+				end if
+			end if	
+		end if
 		
 		# Note: Fish
 		# As far as I can tell there is no fish language module.

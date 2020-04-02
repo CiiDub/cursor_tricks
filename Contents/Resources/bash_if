@@ -1,0 +1,5 @@
+#INDENT#
+
+then
+#SCRIPT ex_tabs.scpt##INSERTION#
+fi

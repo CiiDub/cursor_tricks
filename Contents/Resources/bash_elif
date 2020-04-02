@@ -1,0 +1,6 @@
+#INDENT#
+
+then
+#SCRIPT ex_tabs.scpt##INSERTION#
+else
+#SCRIPT ex_tabs.scpt#
