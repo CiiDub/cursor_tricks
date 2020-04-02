@@ -1,5 +1,3 @@
-set app_sup to POSIX path of (path to application support folder from user domain)
-
 # Sub-routines
 # Input: String, Regex and Sub-Capture Group  | Output: Record with entry success:bool and optional entry capture:string
 on testString(search_this, regex, cap_g)
@@ -137,22 +135,24 @@ tell window 1 of application "BBEdit"
 		if doc_lang = "AppleScript" then
 			set osa_regex to "^[	 ]*if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?"
 			set keyword_regex to "if|tell|try|considering|ignoring|repeat|timeout|transaction|using terms from"
-			set handler_regex to "^[ 	]?on [a-zA-Z_-]+[(]?.*[)]? ?"
+			set handler_regex to "^[ 	]?(on|to) (?!error)([a-zA-Z_-]+)[(]?.*[)]? ?"
 			set osa_results to my testString(start_text, osa_regex, "")
-			set handler_results to my testString(start_text, handler_regex, "")
+			set handler_results to my testString(start_text, handler_regex, "2")
 			if success of osa_results then 				
 				set keyword_results to my testString((captured of osa_results), keyword_regex, "")
 				set contents of character cursor to " " & (captured of keyword_results) & linefeed
 				select insertion point before character cursor
 				return insert clipping ended
 			end if
-			if success of handler_results then
-				set er_test to my testString((captured of handler_results), "on error", "")
-				if ((success of er_test) = false) then
-					return insert clipping ended
-				end if
+			if success of handler_results then				
+				set contents of character cursor to " " & (sub_cap of handler_results) & linefeed
+				select insertion point before character cursor
+				return insert clipping ended
 			end if
 		end if
+		
+		#Note: Bash
+		
 		# Note: Fish
 		# As far as I can tell there is no fish language module.
 		
