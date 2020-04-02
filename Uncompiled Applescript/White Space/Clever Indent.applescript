@@ -1,13 +1,31 @@
+set app_sup to POSIX path of (path to application support folder from user domain)
+
 # Sub-routines
-# Input: String and Regex | Output: Record with entry success:bool and optional entry capture:string
-on testString(search_this, regex)
+# Input: String, Regex and Sub-Capture Group  | Output: Record with entry success:bool and optional entry capture:string
+on testString(search_this, regex, cap_g)
+	set _script to POSIX path of (path to application support folder from user domain) & "BBEdit/Packages/Cursor Tricks.bbpackage/Contents/Resources/check_string.rb"
 	try
-		set x to do shell script "echo " & quoted form of search_this & " | egrep -o " & quoted form of regex
-		return {success:true, captured:x}
+		set x to do shell script "ruby " & quoted form of _script & " " & quoted form of search_this & " " & quoted form of regex & " " & cap_g
+		set caps to theSplit(x, "◊")
+		return {success:true, captured:(item 1 of caps), sub_cap:(item 2 of caps)}
 	on error
 		return {success:false}
 	end try
 end testString
+
+
+on theSplit(theString, theDelimiter)
+	# save delimiters to restore old settings
+	set oldDelimiters to AppleScript's text item delimiters
+	# set delimiters to delimiter to be used
+	set AppleScript's text item delimiters to theDelimiter
+	# create the array
+	set theArray to every text item of theString
+	# restore the old setting
+	set AppleScript's text item delimiters to oldDelimiters
+	# return the result
+	return theArray
+end theSplit
 
 #Match bracket character.
 on match_bracket(l_brac)
@@ -39,8 +57,8 @@ set wrapped to POSIX file (home & "wrapped")
 set ended to POSIX file (home & "ended")
 set block_param to POSIX file (home & "block_param")
 
-set open_bracket to "[{[('\"\\`] ?$|(<[a-z]*) ?[0-9a-z\"= ]*>$"
-set close_bracket to "^ ?[]})'\"\\`]|^ ?</[a-z]+ ?>"
+set open_bracket to "[{\\[('\"\\`] ?$|(<[a-z]*) ?[0-9a-z\"= ]*>$"
+set close_bracket to "^ ?[\\]})'\"\\`]|^ ?</[a-z]+ ?>"
 
 tell window 1 of application "BBEdit"
 	try
@@ -71,8 +89,8 @@ tell window 1 of application "BBEdit"
 		end if
 		
 		# Check the line in front (start_text) and behind (end_text) the cursor against a regex.
-		set start_results to my testString(start_text, open_bracket)
-		set end_results to my testString(end_text, close_bracket)
+		set start_results to my testString(start_text, open_bracket, "")
+		set end_results to my testString(end_text, close_bracket, "")
 		 
 
 		### INDENTION LOGIC 
@@ -97,9 +115,9 @@ tell window 1 of application "BBEdit"
 			set param_regex to "do \\|$|{ ?\\|$"
 			set ruby_regex to "^[	 ]*class [A-Z][a-z]+ ?|def [a-z]+ ?.* ?|if .+ ?|unless .+ ?|case .+ ?|while .+ ?|until .+ ?|begin ?|rescue ?"
 			set do_regex to "do ?(\\|.*\\|)? ?"
-			set param_results to my testString(start_text, param_regex)
-			set ruby_results to my testString(start_text, ruby_regex)
-			set do_results to my testString(start_text, do_regex)
+			set param_results to my testString(start_text, param_regex, "")
+			set ruby_results to my testString(start_text, ruby_regex, "")
+			set do_results to my testString(start_text, do_regex, "")
 			if success of param_results then
 				return insert clipping block_param
 			end if
@@ -120,16 +138,16 @@ tell window 1 of application "BBEdit"
 			set osa_regex to "^[	 ]*if .+ then ?|tell .+ ?|try ?|considering .+ ?|ignoring .+ ?|repeat ?.* ?|with (timeout|transaction) .+ ?|using terms from .+ ?"
 			set keyword_regex to "if|tell|try|considering|ignoring|repeat|timeout|transaction|using terms from"
 			set handler_regex to "^[ 	]?on [a-zA-Z_-]+[(]?.*[)]? ?"
-			set osa_results to my testString(start_text, osa_regex)
-			set handler_results to my testString(start_text, handler_regex)
+			set osa_results to my testString(start_text, osa_regex, "")
+			set handler_results to my testString(start_text, handler_regex, "")
 			if success of osa_results then 				
-				set keyword_results to my testString((captured of osa_results), keyword_regex)
+				set keyword_results to my testString((captured of osa_results), keyword_regex, "")
 				set contents of character cursor to " " & (captured of keyword_results) & linefeed
 				select insertion point before character cursor
 				return insert clipping ended
 			end if
 			if success of handler_results then
-				set er_test to my testString((captured of handler_results), "on error")
+				set er_test to my testString((captured of handler_results), "on error", "")
 				if ((success of er_test) = false) then
 					return insert clipping ended
 				end if
