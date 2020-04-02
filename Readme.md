@@ -118,7 +118,7 @@ It works the same for tags.
 </div>
 ```
 
-If it detects a Ruby key word or control statement it will make two new lines indenting the first one and adding the _end_ statement. 
+Ruby: Blocks, Control Statements, and Methods
 
 ```Ruby
 
@@ -138,15 +138,34 @@ Array.each do |∫
 Array.each do | ∫ |
 ```
 
-Then this still works of course.
+AppleScript: Control Statements and Handlers (both __on__ and __to__ varieties)
 
-```Ruby
-Array.each do | param | ∫
+``` 
+tell app "Finder" ∫
 
-Array.each do | param |
-    ∫
-end
+tell app "Finder"
+	∫
+end tell
 ```
+
+```
+if condition then ∫
+
+if condition then
+	∫
+end if
+```
+
+``` 
+on coolHandler(arg) ∫
+
+on coolHandler(arg)
+	∫
+end coolHandler
+```
+
+Bash: Planned
+
 
 Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script (line 31).
 
@@ -204,6 +223,8 @@ I also think __⌘ ⌥ ⌃ G__ should do double duty and run _Select > Live Sear
 
 ## Planned Maybe Additions
 
+- Add Bash language support to Clever Indent
+
 - Maybe add some fancy list stuff to the Copy Line Down script.
-- Probably should add some AppleScript affordances  to Clever Indent script.
+
 - Add some outlining features to Clever Indent
