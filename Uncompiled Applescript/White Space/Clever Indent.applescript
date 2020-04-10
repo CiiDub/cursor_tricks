@@ -64,7 +64,7 @@ set close_bracket to "^ ?[\\]})'\"\\`]|^ ?</[a-z]+ ?>"
 
 tell window 1 of application "BBEdit"
 	try
-		set doc_lang to source language of text document 1
+		set doc_lang to source language of document 1
 	on error
 		set doc_lang to "missing value"
 	end try
