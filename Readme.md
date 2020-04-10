@@ -1,8 +1,6 @@
 # Cursor Tricks
 
-_*Warning: This readme is ..._ 🤔  _self-indulgent._
-
-Cursor Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found. Most of these scripts, clippings and such are grounded or anchored to a native BBEdit command. Often I’m just trying to lean into a muscle memory.
+Cursor Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found. Most of these scripts, clippings and such compliment or anchored to a native BBEdit command. Often I’m just trying to lean into a muscle memory.
 
  “If I can move a line down, it would be nice if I could copy a line down in a similar way.” 
 
@@ -212,7 +210,7 @@ done
 ```
 
 
-Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script (line 31).
+Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML and Markdown. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script.
 
 The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.angelwatt.com/words/2011/04/11/bbedit-smart-newline-open-line/). I was actually shopping for something ruby specific but ran across this. I was impressed by how flexible it was. _Smart New Line_ does more than my script, such as incrementing numbered list. It’s pretty cool and you should check it out, but it doesn’t quite fit for me.
 

@@ -44,7 +44,7 @@ on match_bracket(l_brac)
 	end if
 end match_bracket
 
-set markup_docs to {"HTML", "XML", "Ruby in HTML", "PHP in HTML"}
+set markup_docs to {"HTML", "XML", "Ruby in HTML", "PHP in HTML", "Markdown"}
 
 # Clippings
 # This is the equivalent to ../../../ POSIX path. Thank you Dr. Drang
@@ -106,7 +106,7 @@ tell window 1 of application "BBEdit"
 			# Because I like to pad my brackets, I even have a clipping for it, I figured it could be an issue.
 			# Also tapping a space is an easy way to dismiss autofill.
 			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
-			if character 1 of captured of end_results = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+			if character 1 of (captured of end_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 			return insert clipping wrapped
 		end if
 		
@@ -156,7 +156,7 @@ tell window 1 of application "BBEdit"
 		end if
 		
 		#Note: Bash
-		if doc_lang = "Unix Shell Script" then
+		if doc_lang = "Unix Shell Script" or doc_lang = "Shell Worksheet" then
 			set bash_regex to "^[ 	]*(if|elif|case) ?(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in)"
 			set bash_loops_regex to "^[ 	]*(while ?|until ?|select ?|for ?)(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in [a-zA-Z@$#_\\(\\)]+) ?"
 			
@@ -167,7 +167,7 @@ tell window 1 of application "BBEdit"
 			end if
 			set bash_results to my testString(start_text, bash_regex, "1")
 			if success of bash_results then
-				if (sub_cap of bash_results = "if") then
+				if sub_cap of bash_results = "if" then
 					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 					return insert clipping bash_if
 				end if
