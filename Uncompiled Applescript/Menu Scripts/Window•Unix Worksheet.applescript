@@ -27,9 +27,19 @@ on menuselect(menuName, itemName)
 				end if
 			end tell
 			if is_proj is true then
-				set proj to file of (project document 1)
-				set ws to proj & "Unix Worksheet.worksheet" as string as alias
-				open file ws opening in project window 1 with «class MdDa» and «class Scrt» without adding to recent list
+				set cur_doc to name of document 1 of project window 1
+				# Open project unix worksheet or toggle back previously open document.
+				# Try block catches if there is no previously open document.
+				if cur_doc = "Unix Worksheet.worksheet" then
+					try
+						select text document 1 of project window 1
+					on error
+						return true
+					end try
+				else
+					set ws_path to ((file of project document 1 as text) & "Unix Worksheet.worksheet")
+					open file ws_path opening in project window 1 with «class MdDa» and «class Scrt» without adding to recent list
+				end if
 				return true
 			else
 				return false

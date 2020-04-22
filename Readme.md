@@ -246,7 +246,9 @@ _Unix Worksheets_ are documents that will execute shell commands when you __⌃ 
 
 I have these two persistent documents assigned to __⌘ 1__ and __⌘ 2__ respectively.
 
-What I recently discovered was that every BBEdit project also get a Scratchpad and a persistent Unix Worksheet. With this script the project versions are just as easy to activate. __⌘ 1__ and __⌘ 2__ in my case, when a project is the frontmost window.
+Every BBEdit project also get a Scratchpad and Unix Worksheet. With this script the project versions are just as easy to activate. __⌘ 1__ and __⌘ 2__ in my case, when a project is the frontmost window. 
+
+The project Unix Worksheet will toggle back to the most recent document, if one is open. So you can switch between them quickly using only __⌘ 2__.
 
 If you wish to access the app level documents while leaving a project in front, then hold __⌥__ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
 

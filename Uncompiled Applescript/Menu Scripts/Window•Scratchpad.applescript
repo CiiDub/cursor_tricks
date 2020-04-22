@@ -27,9 +27,8 @@ on menuselect(menuName, itemName)
 				end if
 			end tell
 			if is_proj is true then
-				set proj to file of (project document 1)
-				set ws to proj & "Scratchpad.txt" as string as alias
-				open file ws opening in project window 1 with «class MdDa» and «class Scrt» without adding to recent list
+				set sp_path to ((file of project document 1 as text) & "Scratchpad.txt")
+				open file sp_path opening in project window 1 with «class MdDa» and «class Scrt» without adding to recent list
 				return true
 			else
 				return false
