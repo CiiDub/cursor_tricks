@@ -28,7 +28,7 @@ on menuselect(menuName, itemName)
 			end tell
 			if is_proj is true then
 				set cur_doc to name of document 1 of project window 1
-				# Open project unix worksheet or toggle back previously open document.
+				# Open project unix worksheet or toggle back to previously open document.
 				# Try block catches if there is no previously open document.
 				if cur_doc = "Unix Worksheet.worksheet" then
 					try
