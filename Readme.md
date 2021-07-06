@@ -264,8 +264,6 @@ Both these scripts exist for the same reason. I feel if a command makes a select
 
 The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- __⌘ ⌥ ⌃ H__. It is so much like _Search•Find & Select All_ with __⌘ ⌥ ⌃ G__. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
-I also think __⌘ ⌥ ⌃ G__ should do double duty and run _Select > Live Search Results_ if live search is open. I haven’t figured out a way to make that happen. Well, I have an idea but it would litter up the script menu and I don’t use live search that much anyway. Also, it might not work.
-
 ## Planned Maybe Additions
 
 - Maybe add some fancy list stuff to the Copy Line Down script.
