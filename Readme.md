@@ -6,15 +6,15 @@ Cursor Tricks is a BBEdit package that massages the app to work better with my h
 
  “If this key-command does this work in this context it should do that in another.“
 
-This is the kind of work I want this package to do. Little friction reducers that don’t don’t fight with the BBedit default commands and settings.
+This is the kind of work I want this package to do. Little friction reducers that don’t don’t fight with the BBEdit default commands and settings.
 
 It’s my throw rug for my text editor. I think it really brings the room together. 
 
 ## Installation, and Rake Commands
 
-Download or clone this project. Give it the file extension .bbpackage and double click it. BBedit will install it into _~/Library/Application Support/BBEdit/Packages_. This will not install the menu scripts. There are further instructions below. 
+Download or clone this project. Give it the file extension .bbpackage and double click it. BBEdit will install it into _~/Library/Application Support/BBEdit/Packages_. This will not install the menu scripts. There are further instructions below. 
 
-All the AppleScripts in this package are in sub-folders of the folder _Uncompiled Applescripts_. These are plain text versions of the scripts. The compiled versions are in a corresponding folder under _Contents_ and are the versions used by BBedit. 
+All the AppleScripts in this package are in sub-folders of the folder _Uncompiled Applescripts_. These are plain text versions of the scripts. The compiled versions are in a corresponding folder under _Contents_ and are the versions used by BBEdit. 
 
 The Menu Scripts are different. They are in the package only in a plain text version. You can open them with Script Editor and save them into _~/Library/Application Support/BBEdit/Menu Scripts_ as compiled scripts. There are [Rake](https://github.com/ruby/rake) commands to help install and manage the package if you wish.
 
@@ -22,13 +22,13 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 ### Rake commands
 
-- __rake install__, installs this project as a Cursor Tricks.bbpackage into BBedits Packages folder. It runs backup, and compiles as prerequisites before installing the package.
+- __rake install__, installs this project as a Cursor Tricks.bbpackage into BBEdit’s Packages folder. It runs backup, and compiles as prerequisites before installing the package.
 - __rake compile__, compiles all applescripts except the menu scripts.
 - __rake backup__, backs up the installed (and presumably working) copy of this package as Cursor Tricks.bbpackage.backup in ~/Documents/BBEdit Backups/
 - __rake lines:compile__, compiles all applescripts in the Lines directory.
 - __rake white\_space:compile__, compiles all applescripts in White Space.
 - __rake resources:compile__, compiles all applescripts in resources.
-- __* rake menu\_scripts:install__, compiles & installs into ../BBedit/Menu Scripts/. It doesn’t run as part of the install command, you must run this command explicitly.
+- __* rake menu\_scripts:install__, compiles & installs into ../BBEdit/Menu Scripts/. It doesn’t run as part of the install command, you must run this command explicitly.
 - __rake -T__ to list these commands.
 
 ## Scripts
@@ -38,7 +38,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 - __Copy Line Down__, takes the selected lines duplicates them. The new lines, below the originals, will be selected. Sort of moving down the document.
 - __Copy Line Up__, duplicates the selected lines but leaves the selection put.
 
-These two scripts are meant as to compliments BBedits __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
+These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
 
 - __Smart Home Move__, moves the cursor to start of the line not including prepended white space.
 - __Smart Home Select__, selects to the start of the line not including prepended white space.
@@ -216,11 +216,11 @@ The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.
 
 I use auto-pairing for bracket characters. I wanted my script to know when the cursor was wrapped. 
 
-Also I wanted it to fit with BBedits __New Line After Paragraph__. It uses the key-command _command ↵_ and will make a new line without disturbing the current line / paragraph. Kind of jumping you down there.
+Also I wanted it to fit with BBEdit’s __New Line After Paragraph__. It uses the key-command _command ↵_ and will make a new line without disturbing the current line / paragraph. Kind of jumping you down there.
 
 I set __Clever Indent__ to __⌘  ⌥ ↵__. It’s function is to encapsulate. So “_{}_” from a Javascript function, ” _do end_” from a Ruby block, or  a new line with and indent with Python or Haml. It might make sense for it to indent and name a new section of an outline but not to increment a flat list.
 
-The script doesn’t just insert text but inserts a BBedit clipping. It’s useful because I can take advantage of clippings features. Such as the #INDENT# placeholder, so I don’t have to be concerned with capturing the current lines leading whitespace.
+The script doesn’t just insert text but inserts a BBEdit clipping. It’s useful because I can take advantage of clippings features. Such as the #INDENT# placeholder, so I don’t have to be concerned with capturing the current lines leading whitespace.
 
 I also made  __Clever Indent__ respect expanded tabs with a separate terse script “_ex\_tabs.scpt_” that is called by it’s clippings and lives right there in _Contents/Resources/_. It simplifies the big script and can be used by any clipping (or AppleScript) added in the future.
 
@@ -240,9 +240,9 @@ This is my favorite, because it uses my three favorite features in BBEdit.
 
 _Menu Scripts_ let you prepend a script to a native menu command and optionally continues with command. As well as append a script so it runs after the command. Just a great idea.
 
-_Scratchpad_ is a persistent document in BBedit. The name really kind of says it. It doesn’t sound like much but in practice it’s great.
+_Scratchpad_ is a persistent document in BBEdit. The name really kind of says it. It doesn’t sound like much but in practice it’s great.
 
-_Unix Worksheets_ are documents that will execute shell commands when you __⌃ ↵__ at the end of a line. It’s the command line meets a text document. You can make and save as many as you like but BBedit also has a persistent one available through the _Window_ menu just like Scratchpad.
+_Unix Worksheets_ are documents that will execute shell commands when you __⌃ ↵__ at the end of a line. It’s the command line meets a text document. You can make and save as many as you like but BBEdit also has a persistent one available through the _Window_ menu just like Scratchpad.
 
 I have these two persistent documents assigned to __⌘ 1__ and __⌘ 2__ respectively.
 
