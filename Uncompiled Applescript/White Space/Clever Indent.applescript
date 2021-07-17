@@ -179,7 +179,7 @@ tell window 1 of application "BBEdit"
 					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 					return insert clipping bash_elif
 				end if
-			end if	
+			end if
 		end if
 		
 		# Note: Fish
@@ -206,7 +206,7 @@ tell window 1 of application "BBEdit"
 			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 			set match_char to my match_bracket(character -1 of (captured of start_results))
 			# If the cursor is at the end of a line it will write over the line endings.
-			# This pertects against that.
+			# This protects against that.
 			if (line_offset + line_length) = cursor then set match_char to match_char & "
 "
 			set contents of character cursor to match_char
