@@ -12,7 +12,7 @@ on menuselect(menuName, itemName)
 		end if
 		
 		tell application "BBEdit"
-			tell window 1
+			tell project document 1
 				set w_name to name
 				set ext_test to ".bbprojectd"
 				try
