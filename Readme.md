@@ -49,6 +49,11 @@ They are pulled directly from this blog post. It’s well written and worth a re
 
 I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke _⌘ ↑_. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
 
+### Strings:
+- __Select String__, selects the string literal without including delimiter (double and single quotation markes). If the string is already selected it will bump the selection out to include them.
+
+- __Toggle String Delimiter__, will change the delimiters from single to double quotes and vise versa, if the cursor is inside the string.
+
 ### White Space: 
 _\* The cursor will be represented with a_ ⎮
 
@@ -264,8 +269,10 @@ Both these scripts exist for the same reason. I feel if a command makes a select
 
 The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- __⌘ ⌥ ⌃ H__. It is so much like _Search•Find & Select All_ with __⌘ ⌥ ⌃ G__. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
+- __View Balance__ will extend the selection to include the delimiters if the content between them has already been selected. 
+
 ## Planned Maybe Additions
 
-- Maybe add some fancy list stuff to the Copy Line Down script.
-
-- Add some outlining features to Clever Indent
+- Add fancy outline and list incrementing smart line down . 
+- Add outlining to clever indent
+- Redo Rake commands/file so it doesn't suck.

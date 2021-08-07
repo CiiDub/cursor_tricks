@@ -26,7 +26,7 @@ def collect_osa_from_dir( dir )
 	osa_tasks = []
 	@osa_source.each do | s |
 		trg_dir = "Contents" if [ 'Resources' ].include?( dir )
-		trg_dir = "Contents/Scripts" if [ 'Lines', 'White Space' ].include?( dir )
+		trg_dir = "Contents/Scripts" if [ 'Lines', 'White Space', 'Strings' ].include?( dir )
 		trg_dir = "#{@bbfolders_path}" if [ 'Menu Scripts' ].include?( dir )
 		next unless s.include? "/#{dir}/"
 		osa_tasks << s
@@ -53,6 +53,15 @@ namespace :lines do
 	desc 'Compiles all applescripts under Lines.'
 	task :compile => osa_tasks do
 		puts "Lines applescripts are compiled."
+	end
+end
+
+namespace :strings do
+	osa_tasks = collect_osa_from_dir ( 'Strings' )
+
+	desc 'Compiles all applescripts under Strings.'
+	task :compile => osa_tasks do
+		puts "Strings applescripts are compiled."
 	end
 end
 
@@ -101,7 +110,7 @@ task :backup do
 end
 
 desc 'Compiles all applescripts.'
-task :compile => [ 'lines:compile', 'white_space:compile', 'resources:compile' ]
+task :compile => [ 'lines:compile', 'white_space:compile', 'resources:compile', 'strings:compile' ]
 
 desc "Installs this project as a #{@package_name}.bbpackage into BBedits Packages folder."
 task :install => [ :compile, :backup ] do
