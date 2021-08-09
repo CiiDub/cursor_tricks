@@ -269,7 +269,7 @@ Both these scripts exist for the same reason. I feel if a command makes a select
 
 The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- __⌘ ⌥ ⌃ H__. It is so much like _Search•Find & Select All_ with __⌘ ⌥ ⌃ G__. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
-- __View Balance__ will extend the selection to include the delimiters if the content between them has already been selected. 
+- __View•Balance__ will extend the selection to include the delimiters if the content between them has already been selected. 
 
 ## Planned Maybe Additions
 
