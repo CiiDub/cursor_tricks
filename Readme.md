@@ -6,7 +6,7 @@ Cursor Tricks is a BBEdit package that massages the app to work better with my h
 
  “If this key-command does this work in this context it should do that in another.“
 
-This is the kind of work I want this package to do. Little friction reducers that don’t don’t fight with the BBEdit default commands and settings.
+This is the kind of work I want this package to do. Little friction reducers that don’t fight with the BBEdit default commands and settings.
 
 It’s my throw rug for my text editor. I think it really brings the room together. 
 
@@ -111,6 +111,17 @@ function () {
 }
 ```
 
+You might also want to bring the selection down with you.
+
+```Javascript
+function () {⎮selected text|} 
+
+function () {
+    ⎮selected text|
+}
+```
+
+
 It works the same for tags.
 
 ```HTML
@@ -119,6 +130,13 @@ It works the same for tags.
 <div>
 	⎮
 </div>
+
+<div>⎮selected text⎮</div>
+
+<div>
+	⎮selected text⎮
+</div>
+
 ```
 
 Ruby: Blocks, Control Statements, and Methods
@@ -133,6 +151,19 @@ end
 
 ```
 
+Why not select and wrap the next line.
+
+```Ruby
+
+Array.each do⎮
+puts "hello"⎮
+
+Array.each do
+    ⎮puts "hello"⎮
+end
+
+```
+
 Special case for ruby block parameter delimiters.  
 
 ```Ruby
@@ -140,6 +171,8 @@ Array.each do |⎮
 	
 Array.each do | ⎮ |
 ```
+
+*All the following clips wrap the selection.
 
 AppleScript: Control Statements and Handlers (both __on__ and __to__ varieties)
 
@@ -257,9 +290,9 @@ The project Unix Worksheet will toggle back to the most recent document, if one 
 
 If you wish to access the app level documents while leaving a project in front, then hold __⌥__ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
 
-- __Lines•New Line After Paragraph__, captures the leading white space from the current line, then applies it to the new line. 
+- __Lines•New Line After Paragraph__ & __Lines•New Line Before Paragraph__, captures the leading white space from the current line, then applies it to the new line. 
 
-I found that I pretty much always want auto indenting. This command can save you a little “arrowing” around but it’s pointless if you have to tab over to your current indention. 
+I found that I pretty much always want auto indenting. This command can save you a little “arrowing” around but it’s annoying to tab over to your current indention. 
 
 - __Search•Find & Select All__ after selection is made , it brings Document 1 forward if Find Window is the frontmost window. The default key command is __⌘ ⌥ ⌃ G__, which is in a family of __⌘ G__ and __⌘ E__ key commands that are pretty powerful when used in combination.
 
@@ -273,6 +306,5 @@ The command _Select > Live Search Results_ has a sister command called _Select >
 
 ## Planned Maybe Additions
 
-- Add fancy outline and list incrementing smart line down . 
-- Add outlining to clever indent
+- Add fancy outline and list incrementing to __Smart Line Down__.
 - Redo Rake commands/file so it doesn't suck.

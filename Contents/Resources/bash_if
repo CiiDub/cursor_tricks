@@ -1,5 +1,5 @@
 #INDENT#
 
 then
-#SCRIPT ex_tabs.scpt##INSERTION#
+#SCRIPT ex_tabs_selection.scpt##INSERTION#
 fi

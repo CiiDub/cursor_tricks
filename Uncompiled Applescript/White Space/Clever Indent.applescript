@@ -44,6 +44,20 @@ on match_bracket(l_brac)
 	end if
 end match_bracket
 
+# Reset selection after cleaning up whitespace
+on reset_selection(c, c_l)
+	tell window 1 of application "BBEdit" to select (characters (c-1) thru (c_l-2))
+end reset_selection
+
+on clean_up_whitespace( _captured_of, _cursor, _cursor_length)
+	tell document 1 of application "BBEdit"
+		if character -1 of _captured_of = " " then
+			set contents of characters (_cursor - 1) thru (_cursor - 1) to ""
+			if _cursor < _cursor_length then my reset_selection(_cursor, _cursor_length)
+		end if
+	end tell
+end clean_up_whitespace
+
 set markup_docs to {"HTML", "XML", "Ruby in HTML", "PHP in HTML", "Markdown"}
 
 # Clippings
@@ -71,7 +85,14 @@ tell window 1 of application "BBEdit"
 	set start_line to startLine of selection
 	set line_offset to characterOffset of line start_line
 	set line_length to length of line start_line
+	
+	set end_line to endLine of selection
+	set end_line_offset to characterOffset of line end_line
+	set end_line_length to length of line end_line
+	
 	set cursor to characterOffset of selection
+	set cursor_length to (length of selection) + cursor
+	
 	tell document 1
 		# Set start_text to text on the current line between the cursor and the beginning of the line.
 		# The cursor sits on top of one character so it is offset by one.
@@ -84,29 +105,37 @@ tell window 1 of application "BBEdit"
 		# Set end_text to line text (including) cursor to end of line.
 		# Line length is offset to remove line ending "\n"
 		# Set end_text to empty sting when at end of line/document.
-		if cursor = line_offset + line_length then
+		if cursor_length = end_line_offset + end_line_length then
 			set end_text to ""
 		else
-			set end_text to contents of characters cursor thru (line_offset + line_length - 1) as string
+			set end_text to contents of characters cursor_length thru (end_line_offset + end_line_length - 1) as string
 		end if
 		
 		# Check the line in front (start_text) and behind (end_text) the cursor against a regex.
 		set start_results to my testString(start_text, open_bracket, "")
 		set end_results to my testString(end_text, close_bracket, "")
-		 
-
+		
+		
 		### INDENTION LOGIC 
-
+		
 		
 		# Note: Indent wrapped cursor
 		# If there is a bracketing character on both sides of the cursor
 		if success of start_results and success of end_results then
-			# White space clean up.
+			# Whitespace clean up.
 			# I allowed for an optional space when detecting the bracket characters.
 			# Because I like to pad my brackets, I even have a clipping for it, I figured it could be an issue.
 			# Also tapping a space is an easy way to dismiss autofill.
-			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
-			if character 1 of (captured of end_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+			
+			if character -1 of (captured of start_results) = " " then 
+				set contents of characters (cursor - 1) thru (cursor - 1) to ""
+			end if
+			
+			if character 1 of (captured of end_results) = " " then 
+				set contents of characters (cursor_length - 1) thru (cursor_length - 1) to ""
+				if cursor < cursor_length then my reset_selection(cursor, cursor_length)
+			end if
+			
 			return insert clipping wrapped
 		end if
 		
@@ -124,13 +153,13 @@ tell window 1 of application "BBEdit"
 				return insert clipping block_param
 			end if
 			if success of ruby_results then
-				# White space clean up.
-				if character -1 of (captured of ruby_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+				# Whitespace clean up.
+				my clean_up_whitespace( (captured of ruby_results), cursor, cursor_length)
 				return insert clipping ended
 			end if
 			if success of do_results then
-				# White space clean up.
-				if character -1 of (captured of do_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+				# Whitespace clean up.
+				my clean_up_whitespace( (captured of do_results), cursor, cursor_length)
 				return insert clipping ended
 			end if
 		end if
@@ -142,41 +171,41 @@ tell window 1 of application "BBEdit"
 			set handler_regex to "^[ 	]?(?:(on|to) (?!error)([a-zA-Z_-]+)[(]?.*[)]? ?)"
 			set osa_results to my testString(start_text, osa_regex, "")
 			set handler_results to my testString(start_text, handler_regex, "2")
-			if success of osa_results then 				
+			if success of osa_results then
 				set keyword_results to my testString((captured of osa_results), keyword_regex, "")
 				set contents of character cursor to " " & (captured of keyword_results) & linefeed
 				select insertion point before character cursor
 				return insert clipping ended
 			end if
-			if success of handler_results then				
+			if success of handler_results then
 				set contents of character cursor to " " & (sub_cap of handler_results) & linefeed
 				select insertion point before character cursor
 				return insert clipping ended
 			end if
 		end if
 		
-		#Note: Bash
+		# Note: Bash
 		if doc_lang = "Unix Shell Script" or doc_lang = "Shell Worksheet" then
 			set bash_regex to "^[ 	]*(if|elif|case) ?(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in)"
 			set bash_loops_regex to "^[ 	]*(while ?|until ?|select ?|for ?)(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in [a-zA-Z@$#_\\(\\)]+) ?"
 			
 			set bash_loops_results to my testString(start_text, bash_loops_regex, "")
 			if success of bash_loops_results then
-				if character -1 of (captured of bash_loops_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+				my clean_up_whitespace( (captured of bash_loops_results), cursor, cursor_length)
 				return insert clipping bash_loop
 			end if
 			set bash_results to my testString(start_text, bash_regex, "1")
 			if success of bash_results then
 				if sub_cap of bash_results = "if" then
-					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					my clean_up_whitespace( (captured of bash_results), cursor, cursor_length)
 					return insert clipping bash_if
 				end if
 				if sub_cap of bash_results = "case" then
-					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					my clean_up_whitespace( (captured of bash_results), cursor, cursor_length)
 					return insert clipping bash_case
 				end if
 				if sub_cap of bash_results = "elif" then
-					if character -1 of (captured of bash_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+					my clean_up_whitespace( (captured of bash_results), cursor, cursor_length)
 					return insert clipping bash_elif
 				end if
 			end if
@@ -202,7 +231,7 @@ tell window 1 of application "BBEdit"
 				select insertion point before character cursor
 				return
 			end if
-			# White space clean up.
+			# Whitespace clean up.
 			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
 			set match_char to my match_bracket(character -1 of (captured of start_results))
 			# If the cursor is at the end of a line it will write over the line endings.
@@ -212,7 +241,7 @@ tell window 1 of application "BBEdit"
 			set contents of character cursor to match_char
 			# Fallback if markup doc not selected or isn't supported.
 			# Starts a tag and sets the cursor in position to type tag name. 
-			if match_char = "</" or match_char = "</"& linefeed then
+			if match_char = "</" or match_char = "</" & linefeed then
 				select insertion point before character (cursor + 2)
 				return
 			else
