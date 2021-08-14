@@ -41,6 +41,8 @@ on match_bracket(l_brac)
 		return ")"
 	else if l_brac = ">" then
 		return "</"
+	else
+		beep
 	end if
 end match_bracket
 
@@ -232,7 +234,7 @@ tell window 1 of application "BBEdit"
 				return
 			end if
 			# Whitespace clean up.
-			if character -1 of (captured of start_results) = " " then set contents of characters (cursor - 1) thru (cursor - 1) to ""
+			my clean_up_whitespace( (captured of start_results), cursor, cursor_length)
 			set match_char to my match_bracket(character -1 of (captured of start_results))
 			# If the cursor is at the end of a line it will write over the line endings.
 			# This protects against that.
@@ -240,7 +242,7 @@ tell window 1 of application "BBEdit"
 "
 			set contents of character cursor to match_char
 			# Fallback if markup doc not selected or isn't supported.
-			# Starts a tag and sets the cursor in position to type tag name. 
+			# Starts a tag and sets the cursor in position to type tag name.  
 			if match_char = "</" or match_char = "</" & linefeed then
 				select insertion point before character (cursor + 2)
 				return
