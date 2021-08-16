@@ -257,7 +257,12 @@ do
 done
 ```
 
+- Also include 
+	- Fish Shell control statements and begin block
+
 \* I’m considering removing the bracket and tag closing behavior as it duplicates built-in functionality.
+
+\* Also if you have a string next to the cursor at the end of a function it will try and close the string. Adding a space fixes it.
 
 Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML and Markdown. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script.
 

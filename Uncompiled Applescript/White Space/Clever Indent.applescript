@@ -110,7 +110,7 @@ tell window 1 of application "BBEdit"
 		if cursor_length = end_line_offset + end_line_length then
 			set end_text to ""
 		else
-			set end_text to contents of characters cursor_length thru (end_line_offset + end_line_length - 1) as string
+			set end_text to contents of characters cursor_length thru (end_line_offset + end_line_length+1) as string
 		end if
 		
 		# Check the line in front (start_text) and behind (end_text) the cursor against a regex.
@@ -214,7 +214,15 @@ tell window 1 of application "BBEdit"
 		end if
 		
 		# Note: Fish
-		# As far as I can tell there is no fish language module.
+		if doc_lang = "Fish Shell" then
+			set fish_regex to "^[	 ]*function [a-z]+ ?.* ?|if .+ ?|switch .+ ?|while .+ ?|for [\\w]+ in .+ ?|begin ?"
+			set fish_results to my testString(start_text, fish_regex, "")
+			if success of fish_results then
+				# Whitespace clean up.
+				my clean_up_whitespace( (captured of fish_results), cursor, cursor_length)
+				return insert clipping ended
+			end if
+		end if
 		
 		# LANGUAGE SPECIFIC/SPECIAL CASES ENDS
 		
