@@ -11,7 +11,6 @@ on testString(search_this, regex, cap_g)
 	end try
 end testString
 
-
 on theSplit(theString, theDelimiter)
 	# save delimiters to restore old settings
 	set oldDelimiters to AppleScript's text item delimiters
@@ -24,27 +23,6 @@ on theSplit(theString, theDelimiter)
 	# return the result
 	return theArray
 end theSplit
-
-#Match bracket character.
-on match_bracket(l_brac)
-	if l_brac = "'" then
-		return "'"
-	else if l_brac = "\"" then
-		return "\""
-	else if l_brac = "`" then
-		return "`"
-	else if l_brac = "{" then
-		return "}"
-	else if l_brac = "[" then
-		return "]"
-	else if l_brac = "(" then
-		return ")"
-	else if l_brac = ">" then
-		return "</"
-	else
-		beep
-	end if
-end match_bracket
 
 # Reset selection after cleaning up whitespace
 on reset_selection(c, c_l)
@@ -59,8 +37,6 @@ on clean_up_whitespace(_captured_of, _cursor, _cursor_length)
 		end if
 	end tell
 end clean_up_whitespace
-
-set markup_docs to {"HTML", "XML", "Ruby in HTML", "PHP in HTML", "Markdown"}
 
 # Clippings
 # This is the equivalent to ../../../ POSIX path. Thank you Dr. Drang
@@ -142,7 +118,7 @@ tell window 1 of application "BBEdit"
 			return insert clipping wrapped
 		end if
 		
-		# LANGUAGE SPECIFIC/SPECIAL CASES BEGINS
+		## LANGUAGE SPECIFIC/SPECIAL CASES BEGINS
 		
 		# Note: Ruby
 		if doc_lang = "Ruby" then
@@ -232,43 +208,13 @@ tell window 1 of application "BBEdit"
 			end if
 		end if
 		
-		# LANGUAGE SPECIFIC/SPECIAL CASES ENDS
+		## LANGUAGE SPECIFIC/SPECIAL CASES ENDS
 		
-		# Note: Character Pairing
-		# If there is only a bracketing character on the leading side of the cursor, pairs the character.
-		if success of start_results then
-			if markup_docs contains doc_lang then
-				select insertion point before character (cursor - 1)
-				set _tag to inside tag
-				set tag_name to name of tag of _tag
-				select insertion point before character cursor
-				set close_tag to "</" & tag_name & ">"
-				if (line_offset + line_length) = cursor then set close_tag to close_tag & "
-"
-				set contents of character cursor to close_tag
-				select insertion point before character cursor
-				return
-			end if
-			# Whitespace clean up.
-			my clean_up_whitespace((captured of start_results), cursor, cursor_length)
-			set match_char to my match_bracket(character -1 of (captured of start_results))
-			# If the cursor is at the end of a line it will write over the line endings.
-			# This protects against that.
-			if (line_offset + line_length) = cursor then set match_char to match_char & "
-"
-			set contents of character cursor to match_char
-			# Fallback if markup doc not selected or isn't supported.
-			# Starts a tag and sets the cursor in position to type tag name.  
-			if match_char = "</" or match_char = "</" & linefeed then
-				select insertion point before character (cursor + 2)
-				return
-			else
-				select insertion point before character cursor
-				return
-			end if
-		end if
+		# Note: Character Pairing ( Brackets and Tags )
+		# Character Pairing removed. Its redundent and I didn't like how I implemented it.
+		# But if I deside to redo it, this is the spot.
 		
-		# Note: The fallback 
+		# Note: The simple indention
 		return insert clipping one_over
 	end tell
 end tell

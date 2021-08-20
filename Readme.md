@@ -90,28 +90,6 @@ Text
     ⌇
 ``` 
 
-If it detects one of these characters __(, {, [, “, ‘, \`__ (bracket characters), or a xml/html tag on the left side of the cursor it will close it wrapping the cursor. 
-
-```
-{⌇  
-
-{⌇}
-```
-
-```HTML
-<div>⌇
-
-<div>⌇</div>
-```
-
-If you use a tag but you don’t have the document type set to a markup language , it will start the closing tag for you but you will have to finish the name.
-
-```HTML
-<div>⌇
-
-<div></⌇
-```
-
 If the cursor is wrapped in bracket characters it will make two new lines and indent the first one.  
 
 ```Javascript
@@ -257,14 +235,8 @@ do
 done
 ```
 
-- Also include 
-	- Fish Shell control statements and begin block
-
-\* I’m considering removing the bracket and tag closing behavior as it duplicates built-in functionality.
-
-\* Also if you have a string next to the cursor at the end of a function it will try and close the string. Adding a space fixes it.
-
-Currently the script will close a tag in these doc types : HTML, XML, Ruby in HTML, PHP in HTML and Markdown. Your “_Language in HTML_” can be added pretty easy. Add it to  _markup\_docs_ a list set near the top of the script.
+__Also include:__ 
+- Fish Shell control statements and begin block
 
 The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.angelwatt.com/words/2011/04/11/bbedit-smart-newline-open-line/). It does more than my script, such as incrementing numbered list. It’s pretty cool and you should check it out, but it doesn’t quite fit for me.
 
