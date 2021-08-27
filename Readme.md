@@ -1,10 +1,10 @@
 # Cursor Tricks
 
-Cursor Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found. Most of these scripts, clippings and such compliment or anchored to a native BBEdit command. Often I’m just trying to lean into a muscle memory.
+Cursor Tricks is a BBEdit package that massages the app to work better with my habits and intuition, using customizations I made or found. Most of these scripts, clippings and such compliment or are anchored to a native BBEdit command.
 
- “If I can move a line down, it would be nice if I could copy a line down in a similar way.” 
+“If I can move a line down, it would be nice if I could copy a line down in a similar way.” 
 
- “If this key-command does this work in this context it should do that in another.“
+“If this key-command does this work in this context it should do that in another.“
 
 This is the kind of work I want this package to do. Little friction reducers that don’t fight with the BBEdit default commands and settings.
 
@@ -37,6 +37,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 
 #### 📝 Copy Line Down
 \- takes the selected lines duplicates them. The new lines, below the originals, will be selected. Sort of moving down the document.
+
 #### 📝 Copy Line Up
 \- duplicates the selected lines but leaves the selection put.
 
@@ -78,7 +79,6 @@ This script could be a BBEdit clipping. But making it a script seems appropriate
  
 #### 📝 Clever  Indent
 \- looks at the text on the current line, then changes and indents the next line according to what it sees.
-
 
 The default behavior is to make a new line and indent it.  
 This should works great for languages and markup with significant indentation like Python and Haml.
@@ -244,11 +244,7 @@ I use auto-pairing for bracket characters. I wanted my script to know when the c
 
 Also I wanted it to fit with BBEdit’s __New Line After Paragraph__. It uses the key-command __⌘ ↵__ and will make a new line without disturbing the current line or paragraph.
 
-I set __Clever Indent__ to __⌘ ⌥ ↵__. It’s function is to encapsulate. So “_{}_” from a Javascript function, ” _do end_” from a Ruby block, or  a new line with and indent with Python or Haml. 
-
-The script doesn’t just insert text but inserts a BBEdit clipping. It’s useful because I can take advantage of clippings features. Such as the _#INDENT#_ and _#SCRIPT#_ placeholders.
-
- __Clever Indent__ respects expanded tabs using two terse scripts; _ex\_tabs.scpt_ & _ex\_tabs\_selection_.
+I set __Clever Indent__ to __⌘ ⌥ ↵__. It’s formats the new as encapsulated. That could be a Ruby block or and indented list.
 
 So my mental model is:
 
@@ -257,6 +253,10 @@ So my mental model is:
 - __⌘ ⌥ ↵__ to encapsulate the cursor or new line.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
+
+The script doesn’t just insert text but inserts a BBEdit clipping. It’s useful because it can take advantage of clippings features. Such as the _#INDENT#_ and _#SCRIPT#_ placeholders.
+
+It respects expanded tabs using two terse scripts; _ex\_tabs.scpt_ & _ex\_tabs\_selection_.
 
 ### Menu Scripts
 
@@ -282,10 +282,8 @@ If you wish to access the app level documents while leaving a project in front, 
 #### 📝 Lines•New Line After Paragraph & Lines•New Line Before Paragraph
 \- captures the leading white space from the current line, then applies it to the new line. 
 
-I found that I pretty much always want auto indenting. This command can save you a little “arrowing” around but it’s annoying to tab over to your current indention. 
-
 #### 📝 Search•Find & Select All 
-\- after selection is made , it brings Document 1 forward if Find Window is the frontmost window. The default key command is __⌘ ⌥ ⌃ G__, which is in a family of __⌘ G__ and __⌘ E__ key commands that are pretty powerful when used in combination.
+\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is __⌘ ⌥ ⌃ G__.
 
 #### 📝 Select•Live Search Results
 \- after selection, dismisses Live Find bar so you can edit selection immediately.
