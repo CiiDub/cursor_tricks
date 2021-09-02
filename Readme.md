@@ -29,7 +29,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 - __rake white\_space:compile__, compiles all applescripts in White Space.
 - __rake resources:compile__, compiles all applescripts in resources.
 - __* rake menu\_scripts:install__, compiles & installs into ../BBEdit/Menu Scripts/. It doesn’t run as part of the install command, you must run this command explicitly.
-- __rake -T__ to list these commands.
+- __rake -T__ to list these commands. 
 
 ## Scripts
 
@@ -41,18 +41,18 @@ Any of these scripts can be copied and installed outside of the package of cours
 #### 📝 Copy Line Up
 \- duplicates the selected lines but leaves the selection put.
 
-These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of <kbd>⌃</kbd><kbd>↓</kbd> &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
+These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of <kbd>⌃</kbd><kbd>↓</kbd> &  <kbd>⌃</kbd> <kbd>↑</kbd>. So I use and recommend the shortcuts  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↓</kbd> &  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↑</kbd> respectively.
 
 #### 📝 Smart Home Move
 \- moves the cursor to start of the line not including prepended white space.
 #### 📝 Smart Home Select
 \- selects to the start of the line not including prepended white space.
 
-These two are meant to replace  the default behavior of __⌃ ←__ and __⌃ ⇧ ←__ . 
+These two are meant to replace  the default behavior of <kbd>⌃</kbd> <kbd>←</kbd> and <kbd>⌃</kbd> <kbd>⇧</kbd> <kbd>←</kbd> . 
 They are pulled directly from this blog post. It’s well written and worth a read. 
 [Extending BBEdit with AppleScript](https://jonbeebe.net/2017/07/extending-bbedit-with-applescript/)
 
-I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke __⌘ ↑__. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
+I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke <kbd>⌘</kbd> <kbd>↑</kbd>. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
 
 ### Strings:
 #### 📝 Select String
@@ -242,15 +242,15 @@ The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.
 
 I use auto-pairing for bracket characters. I wanted my script to know when the cursor was wrapped. 
 
-Also I wanted it to fit with BBEdit’s __New Line After Paragraph__. It uses the key-command __⌘ ↵__ and will make a new line without disturbing the current line or paragraph.
+Also I wanted it to fit with BBEdit’s __New Line After Paragraph__. It uses the key-command <kbd>⌘</kbd> <kbd>↵</kbd> and will make a new line without disturbing the current line or paragraph.
 
-I set __Clever Indent__ to __⌘ ⌥ ↵__. It’s formats the new as encapsulated. That could be a Ruby block or and indented list.
+I set __Clever Indent__ to <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd>. It’s formats the new as encapsulated. That could be a Ruby block or and indented list.
 
 So my mental model is:
 
-- __↵__ for a new line at the cursor.
-- __⌘ ↵__ for a new line ignoring the cursor position. 
-- __⌘ ⌥ ↵__ to encapsulate the cursor or new line.
+- <kbd>↵</kbd> for a new line at the cursor.
+- <kbd>⌘</kbd> <kbd>↵</kbd> for a new line ignoring the cursor position. 
+- <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd> to encapsulate the cursor or new line.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
 
@@ -269,28 +269,28 @@ This is my favorite, because it uses my three favorite features in BBEdit.
 
 - _Scratchpad_ is a persistent document in BBEdit. The name really kind of says it. It doesn’t sound like much but in practice it’s great.
 
-- _Unix Worksheets_ are documents that will execute shell commands when you __⌃ ↵__ at the end of a line. It’s the command line meets a text document. You can make and save as many as you like but BBEdit also has a persistent one available through the _Window_ menu just like Scratchpad.
+- _Unix Worksheets_ are documents that will execute shell commands when you <kbd>⌃</kbd> <kbd>↵</kbd> at the end of a line. It’s the command line meets a text document. You can make and save as many as you like but BBEdit also has a persistent one available through the _Window_ menu just like Scratchpad.
 
-I have these two persistent documents assigned to __⌘ 1__ and __⌘ 2__ respectively.
+I have these two persistent documents assigned to <kbd>⌘</kbd><kbd>1</kbd> and <kbd>⌘</kbd><kbd>2</kbd> respectively.
 
-Every BBEdit project also get a Scratchpad and Unix Worksheet. With this script the project versions are just as easy to activate. __⌘ 1__ and __⌘ 2__ in my case, when a project is the frontmost window. 
+Every BBEdit project also get a Scratchpad and Unix Worksheet. With this script the project versions are just as easy to activate. <kbd>⌘</kbd><kbd>1</kbd> and <kbd>⌘</kbd><kbd>2</kbd> in my case, when a project is the frontmost window. 
 
-The project Unix Worksheet will toggle back to the most recent document, if one is open. So you can switch between them quickly using only __⌘ 2__.
+The project Unix Worksheet will toggle back to the most recent document, if one is open. So you can switch between them quickly using only <kbd>⌘</kbd><kbd>2</kbd>.
 
-If you wish to access the app level documents while leaving a project in front, then hold __⌥__ and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
+If you wish to access the app level documents while leaving a project in front, then hold <kbd>⌥</kbd> and activate them from the _Window_ menu. You can also get them by right clicking the BBEdit icon in the dock.
 
 #### 📝 Lines•New Line After Paragraph & Lines•New Line Before Paragraph
 \- captures the leading white space from the current line, then applies it to the new line. 
 
 #### 📝 Search•Find & Select All 
-\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is __⌘ ⌥ ⌃ G__.
+\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>.
 
 #### 📝 Select•Live Search Results
 \- after selection, dismisses Live Find bar so you can edit selection immediately.
 
 Both these scripts exist for the same reason. I feel if a command makes a selection that selection should immediately be available to edit. It frustrates me every time I have to dismiss an iterface element to get to my selection.
 
-The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- __⌘ ⌥ ⌃ H__. It is so much like _Search•Find & Select All_ with __⌘ ⌥ ⌃ G__. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
+The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>H</kbd>. It is so much like _Search•Find & Select All_ with <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
 #### 📝 View•Balance
 \- will extend the selection to include the delimiters if the content between them has already been selected. 
