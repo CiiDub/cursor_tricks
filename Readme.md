@@ -41,7 +41,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 #### 📝 Copy Line Up
 \- duplicates the selected lines but leaves the selection put.
 
-These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of __⌃ ↓__ &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
+These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of <kbd>⌃</kbd><kbd>↓</kbd> &  __⌃ ↑__. So I use and recommend the shortcuts  __⌃ ⌥ ↓__ &  __⌃ ⌥ ↑__ respectively.
 
 #### 📝 Smart Home Move
 \- moves the cursor to start of the line not including prepended white space.
@@ -52,7 +52,7 @@ These two are meant to replace  the default behavior of __⌃ ←__ and __⌃ �
 They are pulled directly from this blog post. It’s well written and worth a read. 
 [Extending BBEdit with AppleScript](https://jonbeebe.net/2017/07/extending-bbedit-with-applescript/)
 
-I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke _⌘ ↑_. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
+I made a small change to make them work in search fields. Kind of a hack and will bring up a accessibility security dialog. It tells System Events to keystroke __⌘ ↑__. Which takes you to the beginning of a document. In a one line search field that is a pretty good fallback.
 
 ### Strings:
 #### 📝 Select String
