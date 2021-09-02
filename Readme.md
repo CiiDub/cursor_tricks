@@ -41,7 +41,7 @@ Any of these scripts can be copied and installed outside of the package of cours
 #### 📝 Copy Line Up
 \- duplicates the selected lines but leaves the selection put.
 
-These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of <kbd>⌃</kbd><kbd>↓</kbd> &  <kbd>⌃</kbd> <kbd>↑</kbd>. So I use and recommend the shortcuts  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↓</kbd> &  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↑</kbd> respectively.
+These two scripts are meant as to compliments BBEdit’s __Edit > Lines > Move Line Down__ & __Edit > Lines > Move Line Up__. The two native commands have the default keyboard shortcuts of <kbd>⌃</kbd><kbd>↓</kbd> & <kbd>⌃</kbd> <kbd>↑</kbd>. So I use and recommend the shortcuts  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↓</kbd> &  <kbd>⌃</kbd> <kbd>⌥</kbd> <kbd>↑</kbd> respectively.
 
 #### 📝 Smart Home Move
 \- moves the cursor to start of the line not including prepended white space.
@@ -283,14 +283,14 @@ If you wish to access the app level documents while leaving a project in front, 
 \- captures the leading white space from the current line, then applies it to the new line. 
 
 #### 📝 Search•Find & Select All 
-\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>.
+\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd><kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>.
 
 #### 📝 Select•Live Search Results
 \- after selection, dismisses Live Find bar so you can edit selection immediately.
 
 Both these scripts exist for the same reason. I feel if a command makes a selection that selection should immediately be available to edit. It frustrates me every time I have to dismiss an iterface element to get to my selection.
 
-The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this- <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>H</kbd>. It is so much like _Search•Find & Select All_ with <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
+The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this-  <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>H</kbd>. It is so much like _Search•Find & Select All_ with <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
 #### 📝 View•Balance
 \- will extend the selection to include the delimiters if the content between them has already been selected. 
