@@ -199,7 +199,7 @@ tell window 1 of application "BBEdit"
 		
 		# Note: Fish
 		if doc_lang = "Fish Shell" then
-			set fish_regex to "^[	 ]*function [a-z]+ ?.* ?|if .+ ?|switch .+ ?|while .+ ?|for [\\w]+ in .+ ?|begin ?"
+			set fish_regex to "^[\t ]*function [a-z_]+ ?.* ?|if .+ ?|switch .+ ?|while .+ ?|for [\\w]+ in .+ ?|begin ?"
 			set fish_results to my testString(start_text, fish_regex, "")
 			if success of fish_results then
 				# Whitespace clean up.
@@ -212,7 +212,7 @@ tell window 1 of application "BBEdit"
 		
 		# Note: Character Pairing ( Brackets and Tags )
 		# Character Pairing removed. Its redundent and I didn't like how I implemented it.
-		# But if I deside to redo it, this is the spot.
+		# But if I deside to redo it, this is the spot → ✘ ←.
 		
 		# Note: The simple indention
 		return insert clipping one_over

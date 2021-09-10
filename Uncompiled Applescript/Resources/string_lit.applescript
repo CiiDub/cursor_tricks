@@ -8,7 +8,7 @@ on getHoveredString()
 			set searchEnd to searchStart + (length of line cursorLine) - 1
 			if searchStart ³ searchEnd then return output
 			set searchRange to characters searchStart thru searchEnd
-			set stringLit to "(?P<double>\"[^\"\\\\]*(\\\\.[^\"\\\\]*)*\")|(?P<single>'[^'\\\\]*(?:\\\\.[^'\\\\]*)*')"
+			set stringLit to "(?P<double>(?<!\\\\)\"[^\"\\\\]*(\\\\.[^\"\\\\]*)*\")|(?P<single>(?<!\\\\)'[^'\\\\]*(?:\\\\.[^'\\\\]*)*')"
 			set go to true
 			repeat while go
 				set stringLitMatch to find stringLit searching in searchRange options {search mode:grep}

@@ -283,10 +283,10 @@ If you wish to access the app level documents while leaving a project in front, 
 \- captures the leading white space from the current line, then applies it to the new line. 
 
 #### 📝 Search•Find & Select All 
-\- after selection is made , it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd><kbd>⌥</kbd> <kbd>⌃</kbd><kbd>G</kbd>.
+\- after selection is made it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>.
 
 #### 📝 Select•Live Search Results
-\- after selection, dismisses Live Find bar so you can edit selection immediately.
+\- after selection it dismisses Live Find bar so you can edit selection immediately.
 
 Both these scripts exist for the same reason. I feel if a command makes a selection that selection should immediately be available to edit. It frustrates me every time I have to dismiss an iterface element to get to my selection.
 
