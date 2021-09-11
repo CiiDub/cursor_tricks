@@ -6,7 +6,7 @@ Cursor Tricks is a BBEdit package that massages the app to work better with my h
 
 “If this key-command does this work in this context it should do that in another.“
 
-This is the kind of work I want this package to do. Little friction reducers that don’t fight with the BBEdit default commands and settings.
+This is the kind of work I want this package to do. Little friction reducers that don’t fight with the BBEdit’s default commands and settings.
 
 It’s my throw rug for my text editor. I think it really brings the room together. 
 
@@ -235,22 +235,24 @@ do
 done
 ```
 
-__Also include:__ 
-- Fish Shell control statements and begin block
+__Also include language specific behavior:__ 
+- Fish Shell fuctions, control statements, and blocks.
 
 The __Cleaver Indent__ script was inspired by this: [Smart New Line](http://www.angelwatt.com/words/2011/04/11/bbedit-smart-newline-open-line/). It does more than my script, such as incrementing numbered list. It’s pretty cool and you should check it out, but it doesn’t quite fit for me.
 
-I use auto-pairing for bracket characters. I wanted my script to know when the cursor was wrapped. 
+I use auto-pairing for bracket characters, so I wanted my script to know when the cursor was wrapped in those characters.
+
+I wanted language specific behavior for languages I use a lot. Specifically Ruby, but broadly for languages with varying kinds of end statements.
 
 Also I wanted it to fit with BBEdit’s __New Line After Paragraph__. It uses the key-command <kbd>⌘</kbd> <kbd>↵</kbd> and will make a new line without disturbing the current line or paragraph.
 
-I set __Clever Indent__ to <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd>. It’s formats the new as encapsulated. That could be a Ruby block or and indented list.
+I set __Clever Indent__ to <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd>. It formats the new line as encapsulated. That could be a function, a block, or an indented list.
 
 So my mental model is:
 
 - <kbd>↵</kbd> for a new line at the cursor.
 - <kbd>⌘</kbd> <kbd>↵</kbd> for a new line ignoring the cursor position. 
-- <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd> to encapsulate the cursor or new line.
+- <kbd>⌘</kbd> <kbd>⌥</kbd> <kbd>↵</kbd> to make a new line encapsulated in a context specific way.
 
 I like this a lot. I find I’m simplifying my Clippings and using less of them. I don’t have to think ahead just to use a fancy clipping with a bunch of placeholders. This works really well with me in the flow of things.
 
@@ -286,11 +288,11 @@ If you wish to access the app level documents while leaving a project in front, 
 \- after selection is made it brings Document window forward if Find Window is in front. The default key command is <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>.
 
 #### 📝 Select•Live Search Results
-\- after selection it dismisses Live Find bar so you can edit selection immediately.
+\- after selecting results it dismisses Live Find bar so you can edit selection immediately. This doesn’t have a default key command. I haven’t set one but I wish I could just use <kbd>⌘</kbd> <kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>, as it is so similar to _Search•Find & Select All_
 
 Both these scripts exist for the same reason. I feel if a command makes a selection that selection should immediately be available to edit. It frustrates me every time I have to dismiss an iterface element to get to my selection.
 
-The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -and I’m kind of proud of this-  <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>H</kbd>. It is so much like _Search•Find & Select All_ with <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
+The command _Select > Live Search Results_ has a sister command called _Select > Highlighted Matches_. When the curser is over a word BBEdit will “highlight” every other occurrence. Hit the command and it will select them all for editing. I set it to -_and I’m kind of proud of this_-  <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>H</kbd>. It is so much like _Search•Find & Select All_ with <kbd>⌘</kbd><kbd>⌥</kbd><kbd>⌃</kbd><kbd>G</kbd>. The functionality is basically the same and _H_ both stands for highlight and is next to _G_. I truly think it should be the default.
 
 #### 📝 View•Balance
 \- will extend the selection to include the delimiters if the content between them has already been selected. 
