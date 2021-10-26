@@ -172,8 +172,8 @@ tell window 1 of application "BBEdit"
 		
 		# Note: Bash
 		if doc_lang = "Unix Shell Script" or doc_lang = "Shell Worksheet" then
-			set bash_regex to "^[ 	]*(if|elif|case) ?(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in)"
-			set bash_loops_regex to "^[ 	]*(while ?|until ?|select ?|for ?)(\\[.+\\]|[a-zA-Z@$#_\\(\\)]+ in [a-zA-Z@$#_\\(\\)]+) ?"
+			set bash_regex to "^[ 	]*(if|elif|case) ?(\\[.+\\]|test.+|[a-zA-Z@$#_\\(\\)]+ in)"
+			set bash_loops_regex to "^[ 	]*(while|until|select|for) ?(\\[.+\\]|test.+|[a-zA-Z@$#_\\(\\)]+ in [a-zA-Z@$#_\\(\\)]+) ?"
 			
 			set bash_loops_results to my testString(start_text, bash_loops_regex, "")
 			if success of bash_loops_results then
