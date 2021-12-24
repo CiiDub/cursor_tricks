@@ -212,7 +212,7 @@ tell window 1 of application "BBEdit"
 		
 		# Note: Character Pairing ( Brackets and Tags )
 		# Character Pairing removed. Its redundent and I didn't like how I implemented it.
-		# But if I deside to redo it, this is the spot → ✘ ←.
+		# But if I decide to redo it, this is the spot → ✘ ←.
 		
 		# Note: The simple indention
 		return insert clipping one_over
