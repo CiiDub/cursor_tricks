@@ -4,10 +4,12 @@ set strHovered to strLib's getHoveredString()
 tell application "BBEdit"
 	tell text window 1
 		if hover of strHovered then
-			set cursor to (characterOffset of selection) - 1
-			set cursorEnd to (length of selection) + cursor
-			if cursor = ((str_start_char of strHovered)) and cursorEnd + 1 = (str_end_char of strHovered) then
+			set cursor to (characterOffset of selection)
+			set cursorEnd to (length of selection) + cursor - 1
+			if cursor = ((str_start_char of strHovered) + 1) and cursorEnd = ((str_end_char of strHovered) - 1) then
 				select (characters (str_start_char of strHovered) thru (str_end_char of strHovered))
+			else if (str_end_char of strHovered) - (str_start_char of strHovered) = 1 then
+				select insertion point before character (str_end_char of strHovered)
 			else
 				select (characters ((str_start_char of strHovered) + 1) thru ((str_end_char of strHovered) - 1))
 			end if
