@@ -27,7 +27,12 @@ tell application "BBEdit"
 		if item 1 of sel_list is "" or item 1 of sel_list is " " then set sel_list to rest of sel_list
 		if item -1 of sel_list is linefeed then set sel_list to reverse of rest of reverse of sel_list
 		repeat with _line in sel_list
-			set contents of _line to _indent & contents of _line
+			# Remove indention.
+			# The #indent clipping placeholder will indent correctly, otherwise it doubles up.
+			set _new_line to contents of _line
+			set _cmd to "echo " & quoted form of _new_line & " | sed -r 's/^[	 ]+//g'"
+			set _new_line to do shell script _cmd
+			set contents of _line to _indent & _new_line
 		end repeat
 		set output to sel_list as string
 		set AppleScript's text item delimiters to old
