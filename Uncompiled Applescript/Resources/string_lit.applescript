@@ -10,7 +10,7 @@ on getHoveredString()
 			if searchStart ≥ searchEnd then return output
 			if searchEnd > docSize then set searchEnd to docSize
 			set searchRange to characters searchStart thru searchEnd
-			set stringLit to "(?P<double>(?<!\\\\)\"[^\"\\\\]*(\\\\.[^\"\\\\]*)*\")|(?P<single>(?<!\\\\)'[^'\\\\]*(?:\\\\.[^'\\\\]*)*')"
+ 			set stringLit to "(?P<double>(?<!\\\\)\"[^\"\\\\]*(\\\\.[^\"\\\\]*)*\")|(?P<single>(?<!\\\\)'[^'\\\\]*(?:\\\\.[^'\\\\]*)*')|(?P<rexgex>(?<!\\\\|[#!]|\\w)/.*/)"
 			set go to true
 			repeat while go
 				set stringLitMatch to find stringLit searching in searchRange options {search mode:grep, backwards:true}
@@ -21,8 +21,9 @@ on getHoveredString()
 					if cursor > matchStart then set go to false
 					if cursor = searchEnd and matchEnd = searchEnd then set go to false
 					if cursor ≥ matchStart and cursor ≤ matchEnd then
-						set output to {hover:true, str_start_char:matchStart, str_end_char:(matchEnd - 1), double_quote:true}
+						set output to {hover:true, str_start_char:matchStart, str_end_char:(matchEnd - 1), double_quote:true, regex:false}
 						if character 1 of found text of stringLitMatch is "'" then set double_quote of output to false
+						if character 1 of found text of stringLitMatch is "/" then set regex of output to true
 						set go to false
 					else
 						if searchStart > matchStart then exit repeat

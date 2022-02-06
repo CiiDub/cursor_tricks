@@ -9,6 +9,7 @@ tell application "BBEdit"
 		set playBeep to true
 		
 		if hover of strHovered then
+			if regex of strHovered then return beep
 			set re_quote to "\""
 			if double_quote of strHovered then set re_quote to "'"
 			set character (str_start_char of strHovered) to re_quote
