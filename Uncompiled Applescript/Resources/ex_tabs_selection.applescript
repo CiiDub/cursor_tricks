@@ -30,7 +30,7 @@ tell application "BBEdit"
 			# Remove indention.
 			# The #indent clipping placeholder will indent correctly, otherwise it doubles up.
 			set _new_line to contents of _line
-			set _cmd to "echo " & quoted form of _new_line & " | sed -r 's/^[	 ]+//g'"
+			set _cmd to " sed -r 's/^[	 ]+//g' " & "<<<" & quoted form of _new_line
 			set _new_line to do shell script _cmd
 			set contents of _line to _indent & _new_line
 		end repeat
