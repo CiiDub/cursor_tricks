@@ -28,7 +28,7 @@ tell application "BBEdit" to tell text window 1
 	set str_end to item 3 of str_data as number
 	set str_style to item 4 of str_data
 	
-	if str_style is "regex" then retrun beep
+	if str_style is "regex" then return beep
 	
 	if str_style is "single" then set re_quote to "\""
 	if str_style is "double" then set re_quote to "'"
