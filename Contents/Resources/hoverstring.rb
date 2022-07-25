@@ -3,10 +3,8 @@
 def get( cursor_offset, doc )
 	str_pattern = /(?<double>(?<!\\)"[^"\\]*(?:\\.[^"\\]*)*")|(?<single>(?<!\\)'[^'\\]*(?:\\.[^'\\]*)*')|(?<regex>(?<!\\\|[#!]|\w)\/.*\/)/
 	
-	processed_doc = -> {
-		doc.gsub('\\"','&&')
-	}.call
-	 
+	processed_doc = doc.gsub('\\"','&&')
+	
 	hovered_match = -> {
 		all_matches = get_all_matches( processed_doc, str_pattern )
 		find_hovered_match( all_matches, cursor_offset )
