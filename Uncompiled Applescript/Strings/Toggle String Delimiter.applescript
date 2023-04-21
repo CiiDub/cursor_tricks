@@ -1,7 +1,7 @@
 on get_hovered_str(cursor, str)
 	set app_sup to POSIX path of (path to application support folder from user domain) as text
 	set scrp to app_sup & "BBEdit/Packages/Cursor Tricks.bbpackage/Contents/Resources/hoverstring.rb"
-	set hover_str to do shell script "ruby " & quoted form of scrp & " " & cursor & " " & quoted form of str
+	set hover_str to do shell script "export " & quoted form of "LANG=en_US.UTF-8" & "; ruby " & quoted form of scrp & " " & cursor & " " & quoted form of str	
 	set oldDelimiters to AppleScript's text item delimiters
 	set AppleScript's text item delimiters to " "
 	set hover_arr to every text item of hover_str
