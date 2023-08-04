@@ -33,10 +33,10 @@ tell application "BBEdit"
 		
 		set _min_indent to 1000
 		repeat with _line in sel_list
-			set _cmd to "grep -o '^[ 	]*'" & "<<<" & quoted form of _line
+			set _cmd to "echo " & quoted form of _line & " | " & "grep -o '^[ 	]*'"
 			set cmd_output to do shell script _cmd
 		end repeat
-
+		
 		set _line_indent to (count of cmd_output)
 		if _min_indent > _line_indent then
 			set _min_indent to _line_indent
@@ -45,7 +45,7 @@ tell application "BBEdit"
 		repeat with _line in sel_list
 			set new_line to contents of _line
 			# Remove min number of indents
-			set _cmd to " sed -r 's/^[ 	]{" & _min_indent & "}//' " & "<<<" & quoted form of new_line
+			set _cmd to "echo " & quoted form of _line & " | " & " sed -r 's/^[ 	]{" & _min_indent & "}//' "
 			set new_line to do shell script _cmd
 			set contents of _line to _indent & new_line
 		end repeat
