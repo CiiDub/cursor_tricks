@@ -2,25 +2,45 @@
 
 def get( cursor_offset, doc )
 	str_pattern = /(?<double>(?<!\\)"[^"\\]*(?:\\.[^"\\]*)*")|(?<single>(?<!\\)'[^'\\]*(?:\\.[^'\\]*)*')|(?<regex>(?<!\\\|[#!]|\w)\/.*\/)/
-	
-	processed_doc = doc.gsub('\\"','&&')
+
+	processed_doc = process_doc( doc )
 	
 	hovered_match = -> {
 		all_matches = get_all_matches( processed_doc, str_pattern )
 		find_hovered_match( all_matches, cursor_offset )
 	}.call
 	
-	return make_output_hash( nil ) if hovered_match.nil?
+	return make_output_string( nil ) if hovered_match.nil?
 	
 	hovered_nested_match = -> {
 		nested_matches = get_all_matches( hovered_match.to_s[1..-2], str_pattern ).reject{ |nm| nm[:regex] }
 		find_hovered_match( nested_matches, cursor_offset, hovered_match )
 	}.call
 	
-	hovered_nested_match.nil? ? make_output_hash( hovered_match ) : make_output_hash( hovered_nested_match, hovered_match )
+	hovered_nested_match.nil? ? make_output_string( hovered_match ) : make_output_string( hovered_nested_match, hovered_match )
 end
 
-def get_all_matches( str, regex )
+def process_doc( doc )
+	# Weird case where with strings in Applescript with a double excaped quote would throw off offset.
+	replace_double_escaped_quote = -> { doc.gsub('\\"','**') }
+	
+	# BBEdit (utf-16?) counts emoji as two chars, while Ruby (utf-8) counts them as one.
+	replace_four_byte_chars = -> {
+		doc.chars.map{ | char |  
+				next char unless char.bytesize == 4
+				char = '**'
+		}.join
+	}
+	
+	# I can't figure out how to account for apostrophes so I will remove them.
+	replace_apostrophes = -> { doc.gsub( /\w'\w/, '***') }
+	
+	doc = replace_double_escaped_quote.call
+	doc = replace_four_byte_chars.call
+	doc = replace_apostrophes.call
+end
+
+def find_all_matches( str, regex )
 	match_objects = []
 	str.scan( regex ){ match_objects << Regexp.last_match }
 	match_objects
@@ -33,7 +53,7 @@ def find_hovered_match( matches, cursor, parent_match=nil )
 	end
 end
 
-def make_output_hash( match, parent_match=nil )
+def make_output_string( match, parent_match=nil )
 	return false if match.nil?
 	p_offset = parent_match.nil? ? 0 : parent_match.begin(0) + 1
 	s_type = -> ( m ) {
@@ -41,6 +61,8 @@ def make_output_hash( match, parent_match=nil )
 		return 'single' if m[ :single ]
 		'regex' if m[ :regex ]
 	}
+	
+	# Output format: Found String=True|False, Curser OffsetA=Int, Curser OffsetB=Int, String Type=Double Quotes|Single Qoutes|Regex literal
 	"#{true} #{( match.begin(0) + p_offset + 1 )} #{( match.end(0) + p_offset )} #{s_type.call( match )}"
 end
 
