@@ -6,14 +6,14 @@ def get( cursor_offset, doc )
 	processed_doc = process_doc( doc )
 	
 	hovered_match = -> {
-		all_matches = get_all_matches( processed_doc, str_pattern )
+		all_matches = find_all_matches( processed_doc, str_pattern )
 		find_hovered_match( all_matches, cursor_offset )
 	}.call
 	
 	return make_output_string( nil ) if hovered_match.nil?
 	
 	hovered_nested_match = -> {
-		nested_matches = get_all_matches( hovered_match.to_s[1..-2], str_pattern ).reject{ |nm| nm[:regex] }
+		nested_matches = find_all_matches( hovered_match.to_s[1..-2], str_pattern ).reject{ |nm| nm[:regex] }
 		find_hovered_match( nested_matches, cursor_offset, hovered_match )
 	}.call
 	
