@@ -62,7 +62,7 @@ def make_output_string( match, parent_match=nil )
 		'regex' if m[ :regex ]
 	}
 	
-	# Output format: Found String=True|False, Curser OffsetA=Int, Curser OffsetB=Int, String Type=Double Quotes|Single Qoutes|Regex literal
+	# Output format: Found String=True|False, Cursor OffsetA=Int, Cursor OffsetB=Int, String Type=Double Quotes|Single Qoutes|Regex literal
 	"#{true} #{( match.begin(0) + p_offset + 1 )} #{( match.end(0) + p_offset )} #{s_type.call( match )}"
 end
 
