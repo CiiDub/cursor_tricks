@@ -32,7 +32,7 @@ on menuselect(menuName, itemName)
 				# Try block catches if there is no previously open document.
 				if cur_doc = "Unix Worksheet.worksheet" then
 					try
-						select text document 1 of project window 1
+						select document 2 of project window 1
 					on error
 						return true
 					end try

@@ -27,8 +27,19 @@ on menuselect(menuName, itemName)
 				end if
 			end tell
 			if is_proj is true then
-				set sp_path to ((file of project document 1 as text) & "Scratchpad.txt")
-				open file sp_path opening in project window 1 with Çclass MdDaÈ and Çclass ScrtÈ without adding to recent list
+				set cur_doc to name of document 1 of project window 1
+				# Open project unix worksheet or toggle back to previously open document.
+				# Try block catches if there is no previously open document.
+				if cur_doc = "Scratchpad.txt" then
+					try
+						select document 2 of project window 1
+					on error
+						return true
+					end try
+				else
+					set sp_path to ((file of project document 1 as text) & "Scratchpad.txt")
+					open file sp_path opening in project window 1 with Â«class MdDaÂ» and Â«class ScrtÂ» without adding to recent list
+				end if
 				return true
 			else
 				return false
