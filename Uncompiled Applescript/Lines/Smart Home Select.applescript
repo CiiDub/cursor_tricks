@@ -8,7 +8,7 @@
 
 tell application "BBEdit" to tell front window
 	-- Accommodation for search windows
-	if name = "Find" or name = "Pattern Playground" or name = "Multi-File Search" then
+	if name = "Find" or name contains "bbpatternplayground" or name = "Pattern Playground" or name = "Multi-File Search" then
 		tell application "System Events" to key code 126 using {shift down, command down}
 		return
 	end if
